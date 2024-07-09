@@ -11,33 +11,49 @@ class World {
         new Clouds(),
     ];
    
-    background = new Background();
+    backgroundObjects = [
+        new BackgroundObject('graphics/5_background/layers/1_first_layer/1.png', 0, 280),
+    ];
 
     constructor(canvas) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.draw();
-    }
+    };
 
+
+/**
+ * function draw, creates / "draws" the elements which are added to the game world,
+ * inside the class World and calls the necessary functions
+ */
     draw() {
         this.ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        this.ctx.drawImage(this.character.img, this.character.x, this.character.y, this.character.width, this.character.height);
-        this.enemies.forEach(chicken => {
-            this.ctx.drawImage(chicken.img, chicken.x, chicken.y, chicken.width, chicken.height);
-        });
-
-        this.cloud.forEach(clouds => {
-            this.ctx.drawImage(clouds.img, clouds.x, clouds.y);
-        });
-/*         this.ctx.drawImage(this.clouds.img, this.clouds.x, this.clouds.y)
- */
-       this.ctx.drawImage(this.background.img, this.background.x, this.background.y);
+        this.addToMap(this.character);
+        this.addObjectsToMap(this.backgroundObjects);
+        this.addObjectsToMap(this.cloud);
+        this.addObjectsToMap(this.enemies);
 
         requestAnimationFrame(() => {
             this.draw();
         })
     };
 
- 
+    /**
+     * addObjectsToMap() auxiliary function creating forEach loops for the different objects
+     * @param {*} objects 
+     */
+    addObjectsToMap(objects) {
+        objects.forEach(o => {
+            this.addToMap(o);
+        });
+    };
+
+    /**
+     * addToMap() auxiliary function which draws the objects and the parameters are given inside, for positioning 
+     * @param {*} mo 
+     */
+    addToMap(mo) {
+        this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
+    };
 }
