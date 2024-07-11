@@ -8,6 +8,7 @@ class World {
     ctx;
     canvas;
     keyboard;
+    camera_x = 0;
     cloud =[
         new Clouds(),
     ];
@@ -40,10 +41,14 @@ class World {
     draw() {
         this.ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+        this.ctx.translate(this.camera_x, 0);
+
         this.addObjectsToMap(this.backgroundObjects);
         this.addToMap(this.character);
         this.addObjectsToMap(this.cloud);
         this.addObjectsToMap(this.enemies);
+
+        this.ctx.translate(-this.camera_x, 0);
 
         requestAnimationFrame(() => {
             this.draw();
@@ -67,11 +72,13 @@ class World {
     addToMap(mo) {
         if(mo.otherDirection) {
             this.ctx.save();
-            this.ctx.translate(mo.img.width, 0);
+            this.ctx.translate(mo.width, 0);
             this.ctx.scale(-1, 1);
+            mo.x = mo.x * -1;
         }
         this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
         if(mo.otherDirection) {
+            mo.x = mo.x * -1;
             this.ctx.restore();
         }
     };
