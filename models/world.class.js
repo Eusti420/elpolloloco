@@ -7,6 +7,7 @@ class World {
     ];
     ctx;
     canvas;
+    keyboard;
     cloud =[
         new Clouds(),
     ];
@@ -19,11 +20,17 @@ class World {
         
     ];
 
-    constructor(canvas) {
+    constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
+        this.keyboard = keyboard;
+        this.setWorld();
         this.draw();
     };
+
+    setWorld() {
+        this.character.world = this;
+    }
 
 
 /**
