@@ -10,6 +10,13 @@ const level1 = new Level(
     ],
 
     [
+        new Coin(),
+        new Coin(),
+        new Coin(),
+    ],
+    
+    
+    [
         new Clouds(),
     ],
 
@@ -39,5 +46,8 @@ const level1 = new Level(
         new BackgroundObject('graphics/5_background/layers/2_second_layer/2.png', 2157),
         new BackgroundObject('graphics/5_background/layers/1_first_layer/2.png', 2157),
     ],
+
+   
+    
 
 );

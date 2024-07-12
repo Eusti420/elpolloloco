@@ -29,9 +29,7 @@ class MovableObject {
         this.currentImage++;
     }
 
-    moveRight() {
-        console.log('Moving Right');
-    }
+    
 
     moveLeft() {
         setInterval(() => {
