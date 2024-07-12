@@ -1,3 +1,7 @@
+/**
+ * world class where are all necessary objects are implicated which are relevant for the game experience
+ * constructor loads the canvas element and 
+ */
 class World {
     character = new Character();
     level = level1;

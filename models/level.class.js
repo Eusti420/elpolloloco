@@ -1,3 +1,6 @@
+/**
+ * level class, which can be used inside world class
+ */
 class Level {
     enemies;
     cloud;
