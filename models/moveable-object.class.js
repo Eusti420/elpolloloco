@@ -19,15 +19,6 @@ class MovableObject extends DrawableObject {
         return this.y <170;
     };
 
-    
-    loadImages(arr) {
-        arr.forEach((path) => {
-            let img = new Image();
-            img.src = path;
-            this.imageCache[path] = img;
-        }); 
-    };
-
     // character.isColliding(chicken);
     isColliding(mo) {
         return this.x + this.width > mo.x &&
