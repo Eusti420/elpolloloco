@@ -1,7 +1,7 @@
 class Character extends MovableObject {
     height = 260;
     width = 120;
-    y = 80;
+    y = 70;
     speed = 8;
     world;
     walking_sound = new Audio('audio/walking.mp3');
@@ -26,12 +26,40 @@ class Character extends MovableObject {
         'graphics/2_character_pepe/3_jump/J-38.png',
         'graphics/2_character_pepe/3_jump/J-39.png',
     ];
+
+    IMAGES_DEAD = [
+        'graphics/2_character_pepe/5_dead/D-51.png',
+        'graphics/2_character_pepe/5_dead/D-52.png',
+        'graphics/2_character_pepe/5_dead/D-53.png',
+        'graphics/2_character_pepe/5_dead/D-54.png',
+        'graphics/2_character_pepe/5_dead/D-55.png',
+        'graphics/2_character_pepe/5_dead/D-56.png',
+        'graphics/2_character_pepe/5_dead/D-57.png',
+    ];
+
+    IMAGES_HURT = [
+        'graphics/2_character_pepe/4_hurt/H-41.png',
+        'graphics/2_character_pepe/4_hurt/H-42.png',
+        'graphics/2_character_pepe/4_hurt/H-43.png',
+    ];
+
+    IMAGES_STATUSBAR_HEALTH = [
+        'graphics/7_statusbars/1_statusbar/2_statusbar_health/blue/100.png',
+        'graphics/7_statusbars/1_statusbar/2_statusbar_health/blue/80.png',
+        'graphics/7_statusbars/1_statusbar/2_statusbar_health/blue/60.png',
+        'graphics/7_statusbars/1_statusbar/2_statusbar_health/blue/40.png',
+        'graphics/7_statusbars/1_statusbar/2_statusbar_health/blue/20.png',
+        'graphics/7_statusbars/1_statusbar/2_statusbar_health/blue/0.png',
+    ];
     
 
     constructor() {
         super().loadImage('graphics/2_character_pepe/2_walk/W-21.png'); 
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
+        this.loadImages(this.IMAGES_DEAD);
+        this.loadImages(this.IMAGES_HURT);
+        this.loadImages(this.IMAGES_STATUSBAR_HEALTH);
         this.applyGravity();
         this.animate();
     }
@@ -63,13 +91,22 @@ class Character extends MovableObject {
         }, 1000 / 60)
 
         setInterval(() => {
-            if(this.isAboveGround()) {
+            if (this.isDead()) {
+                this.playAnimation(this.IMAGES_DEAD);
+
+            } else if(this.isHurt()) {
+                this.playAnimation(this.IMAGES_HURT);
+            }
+
+            else if(this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
             } else {
                 if(this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                     this.playAnimation(this.IMAGES_WALKING);
                 }
             }}, 50);
+
+           
     };
 
 }
