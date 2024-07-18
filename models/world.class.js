@@ -9,6 +9,7 @@ class World {
     canvas;
     keyboard;
     camera_x = 0;
+    statusbar = new Statusbar()
     
 
     constructor(canvas, keyboard) {
