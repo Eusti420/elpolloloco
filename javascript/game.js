@@ -7,6 +7,11 @@ function init() {
     world = new World(canvas, keyboard);
 }
 
+function startGame() {
+    document.getElementById('start-btn').classList.add('d-hide');
+    document.getElementById('starting-screen').classList.add('d-hide');
+}
+
 window.addEventListener("keydown", (e) => {
     if(e.keyCode == 39) {
         keyboard.RIGHT = true;
