@@ -2,12 +2,9 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 
-
-
 function startGame() {
     document.getElementById('start-btn').classList.add('d-hide');
     document.getElementById('starting-screen').classList.add('d-hide');
-  
     initLevel();
     init();
 }

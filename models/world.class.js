@@ -9,14 +9,18 @@ class World {
     canvas;
     keyboard;
     camera_x = 0;
-    statusbar = new Statusbar();
+    statusbarHealth;
+    statusbarCoin;
+    statusbarBottle;
     throwableObject = [];
-    
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
+        this.statusbarHealth = new Statusbar(40, 0, 'health');
+        this.statusbarCoin = new Statusbar(40, 50, 'coin');
+        this.statusbarBottle = new Statusbar(40, 100, 'bottle');
         this.draw();
         this.setWorld();
         this.run();
@@ -28,7 +32,6 @@ class World {
 
     run() {
         setInterval(() => {
-
             this.checkCollision();
             this.checkThrowObject();
         }, 200);
@@ -37,25 +40,21 @@ class World {
     checkCollision() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
-                this.character.hit()
-                this.statusbar.setPercentage(this.character.energy);
+                this.character.hit();
+                this.statusbarHealth.setPercentage(this.character.energy);
             }
         });
     }
 
     checkThrowObject() {
         if (this.keyboard.D) {
-            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100)
+            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObject.push(bottle);
         }
     }
 
-/**
- * function draw, creates / "draws" the elements which are added to the game world,
- * inside the class World and calls the necessary functions
- */
     draw() {
-        this.ctx.clearRect(0, 0, canvas.width, canvas.height);
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         this.ctx.translate(this.camera_x, 0);
         
@@ -65,7 +64,9 @@ class World {
         this.addObjectsToMap(this.level.enemies);
 
         this.ctx.translate(-this.camera_x, 0);
-        this.addToMap(this.statusbar);
+        this.addToMap(this.statusbarHealth);
+        this.addToMap(this.statusbarCoin);
+        this.addToMap(this.statusbarBottle);
         this.ctx.translate(this.camera_x, 0);
 
         this.addObjectsToMap(this.throwableObject);
@@ -75,32 +76,24 @@ class World {
 
         requestAnimationFrame(() => {
             this.draw();
-        })
+        });
     };
 
-    /**
-     * addObjectsToMap() auxiliary function creating forEach loops for the different objects
-     * @param {*} objects 
-     */
     addObjectsToMap(objects) {
         objects.forEach(o => {
             this.addToMap(o);
         });
     };
 
-    /**
-     * addToMap() auxiliary function which draws the objects and the parameters are given inside, for positioning 
-     * @param {*} mo 
-     */
     addToMap(mo) {
-        if(mo.otherDirection) {
+        if (mo.otherDirection) {
             this.mirrorImage(mo);
         }
 
         mo.draw(this.ctx);
         mo.drawFrame(this.ctx);
 
-        if(mo.otherDirection) {
+        if (mo.otherDirection) {
             this.reverseMirrorImage(mo);
         }
     };

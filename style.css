@@ -4,6 +4,8 @@ body {
     margin: 0;
     background-image: url('graphics/5_background/background_img.png');
     background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -25,7 +27,7 @@ h1 {
     background-size: cover;
     z-index: 1;
     width: 720px;
-    height: 480px;
+    height: 486px;
     position: absolute;
     display: flex;
     justify-content: center;
@@ -52,15 +54,59 @@ h1 {
     display: none;
 }
 
-canvas {
-    background-color: black;
-    z-index: -1;
-
-}
-
 .menu {
     display: flex;
     font-weight: bold;
     gap: 24px;
     text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
 }
+
+canvas {
+    background-color: black;
+    display: block;
+    z-index: -1;
+}
+
+.sound-icon {
+    height: 48px;
+    width: 48px;
+    object-fit: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-top: 10px;
+}
+
+.sound-icon:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+@media only screen and (max-width: 720px) {
+    canvas {
+        width: 100%;
+    }
+
+    h1 {
+        display: none;
+    }
+
+    .menu {
+        display: none;
+    }
+}
+
+@media only screen and (max-height: 480px) {
+    canvas {
+        height: 100vh;
+    }
+
+    h1 {
+        display: none;
+    }
+
+    .menu {
+        display: none;
+    }
+}
+
+
