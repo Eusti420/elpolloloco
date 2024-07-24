@@ -2,15 +2,19 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 
-function init() {
-    canvas = document.getElementById('canvas');
-    world = new World(canvas, keyboard);
-}
+
 
 function startGame() {
     document.getElementById('start-btn').classList.add('d-hide');
     document.getElementById('starting-screen').classList.add('d-hide');
+  
     initLevel();
+    init();
+}
+
+function init() {
+    canvas = document.getElementById('canvas');
+    world = new World(canvas, keyboard);
 }
 
 window.addEventListener("keydown", (e) => {
