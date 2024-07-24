@@ -1,7 +1,10 @@
 /**
  * level 1 with enemies objects, cloud objects and background objects
  */
-const level1 = new Level(
+let level1;
+function initLevel() {
+
+level1 = new Level(
     [   
         new Chicken(),
         new Chicken(),
@@ -49,4 +52,4 @@ const level1 = new Level(
    
     
 
-);
+)};
