@@ -7,12 +7,28 @@ function startGame() {
     document.getElementById('starting-screen').classList.add('d-hide');
     initLevel();
     init();
-}
+    playGameMusic();
+};
 
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-}
+};
+
+function playGameMusic() {
+    game_music = new Audio('audio/game_sound.mp3');
+    game_music.volume = 0.01;
+    game_music.loop = true;
+    game_music.play();
+};
+
+function stopGameSound() {
+    game_music.pause();
+    this.character.walking_sound = 0;
+
+    console.log('audio volume', this.character.walking_sound);
+    };
+
 
 window.addEventListener("keydown", (e) => {
     if(e.keyCode == 39) {

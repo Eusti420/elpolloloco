@@ -13,6 +13,7 @@ class World {
     statusbarCoin;
     statusbarBottle;
     throwableObject = [];
+    game_music = new Audio('audio/game_sound.mp3');
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -29,6 +30,21 @@ class World {
     setWorld() {
         this.character.world = this;
     }
+
+    playGameMusic() {
+    game_music = new Audio('audio/game_sound.mp3');
+    game_music.volume = 0.01;
+    game_music.loop = true;
+    game_music.play();
+
+   };
+    
+    stopGameSound() {
+    game_music.pause();
+    this.character.walking_sound = 0;
+
+    console.log('audio volume', this.character.walking_sound);
+    };
 
     run() {
         setInterval(() => {

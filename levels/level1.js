@@ -50,4 +50,7 @@ level1 = new Level(
         new BackgroundObject('graphics/5_background/layers/1_first_layer/2.png', 2157),
     ],
 
+   
+    
+
 )};
