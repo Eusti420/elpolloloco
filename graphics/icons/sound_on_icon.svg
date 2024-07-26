@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="91.44mm" height="91.44mm" clip-rule="evenodd" fill-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" version="1.1" viewBox="0 0 9144 9144" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <style type="text/css">.str0 {stroke:white;stroke-width:176.38;stroke-linecap:round;stroke-linejoin:round} .fil1 {fill:none} .fil2 {fill:none;fill-rule:nonzero} .fil0 {fill:url(#a)}</style>
+  <linearGradient id="a" x1="8595.4" x2="548.64" y1="8595.4" y2="548.63" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#48CFAE" offset="0"/>
+   <stop stop-color="#4FC0E8" offset="1"/>
+  </linearGradient>
+ </defs>
+ <polygon class="fil0" points="0 0 9144 0 9144 9144 0 9144"/>
+ <circle class="fil1 str0" cx="4572" cy="4572" r="2117"/>
+ <path class="fil2 str0" d="m3852 4105l906-481c19-10 42-3 52 16 3 5 4 12 4 18v712c14 2 28 6 41 12 25 10 48 25 67 44 1 1 1 2 2 3 39 40 58 91 58 143 0 53-20 105-60 146-1 0-2 1-2 2-19 18-41 32-65 42-13 6-27 10-41 12v712c0 21-17 39-38 39-7 0-13-2-19-5l-905-481h-447c-21 0-39-17-39-38v-858c0-21 18-38 39-38h447z"/>
+ <line class="fil1 str0" x1="3852" x2="3852" y1="4105" y2="5039"/>
+ <line class="fil1 str0" x1="4814" x2="4814" y1="4193" y2="5039"/>
+ <path class="fil1 str0" d="m5556 3654c250 240 391 572 391 918s-140 676-389 916"/>
+ <path class="fil1 str0" d="m5234 3988c159 153 249 364 249 584 0 219-89 429-247 582"/>
+</svg>

@@ -26,11 +26,33 @@ h1 {
     background-repeat: no-repeat;
     background-size: cover;
     z-index: 1;
-    width: 720px;
-    height: 486px;
+    width: 862px;
+    height: 492px;
     position: absolute;
     display: flex;
     justify-content: center;
+}
+
+.settings-screen {
+    z-index: 1;
+    width: 862px;
+    height: 492px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    background-color: #000000;
+    opacity: 0.8;
+}
+
+.settings-btn {
+    height: 64px;
+    width: 64px;
+    padding-top: 8px;
+}
+
+.settings-btn:hover {
+    cursor: pointer;
+    transform: scale(1.2);
 }
 
 .start-btn {
@@ -43,20 +65,27 @@ h1 {
     font-family: "Ga Maamli", sans-serif;
     font-size: 20px;
     font-weight: bold;
+    border: none;
 }
 
 .start-btn:hover {
     cursor: pointer;
     box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.5);
+    transform: scale(1.2);
 }
 
 .d-hide {
     display: none;
 }
 
+.d-block {
+    display: block;
+}
+
 .menu {
     display: flex;
-    font-weight: bold;
+    align-items: center;
+    font-size: 22px;
     gap: 24px;
     text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
 }
@@ -74,9 +103,25 @@ canvas {
     background-position: center;
     background-repeat: no-repeat;
     margin-top: 10px;
+    border-radius: 10px;
 }
 
 .sound-icon:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.close-btn {
+    height: 48px;
+    width: 48px;
+    object-fit: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+.close-btn:hover {
     cursor: pointer;
     transform: scale(1.2);
 }

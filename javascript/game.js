@@ -1,6 +1,7 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let gameMusic = new Audio('audio/game_sound.mp3');
 
 function startGame() {
     document.getElementById('start-btn').classList.add('d-hide');
@@ -16,18 +17,33 @@ function init() {
 };
 
 function playGameMusic() {
-    game_music = new Audio('audio/game_sound.mp3');
-    game_music.volume = 0.01;
-    game_music.loop = true;
-    game_music.play();
+    gameMusic.volume = 0.01;
+    gameMusic.loop = true;
+    gameMusic.play();
+    document.getElementById('turn-music-on').classList.add('d-hide');
+    document.getElementById('turn-music-off').classList.remove('d-hide');
+    
+
 };
 
-function stopGameSound() {
-    game_music.pause();
-    this.character.walking_sound = 0;
+function stopGameMusic() {
+    gameMusic.pause();
+    document.getElementById('turn-music-off').classList.add('d-hide');
+    document.getElementById('turn-music-on').classList.remove('d-hide');
+};
 
-    console.log('audio volume', this.character.walking_sound);
-    };
+function openSettings() {
+    let settingsScreen = document.getElementById('settings-screen');
+    settingsScreen.classList.remove('d-hide');
+    settingsScreen.classList.add('d-block');
+};
+
+function closeSettings() {
+    let settingsScreen = document.getElementById('settings-screen');
+    settingsScreen.classList.remove('d-block');
+    settingsScreen.classList.add('d-hide');
+};
+
 
 
 window.addEventListener("keydown", (e) => {

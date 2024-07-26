@@ -37,14 +37,22 @@
     <div id="starting-screen" class="starting-screen">
         <button id="start-btn" onclick="startGame()" class="start-btn">Start Game</button>
     </div>
+    <div id="settings-screen" class="settings-screen d-hide">
+        <img id="close-settings" onclick="closeSettings()" class="close-btn" src="graphics/icons/close_icon.svg" alt="close button">
+        <img id="turn-music-off" onclick="stopGameMusic()" class="sound-icon d-hide" src="graphics/icons/pause_music_icon.svg" alt="stop music">
+        <img id="turn-music-on" onclick="playGameMusic()" class="sound-icon" src="graphics/icons/turn_music_on_icon.svg" alt="play music">
+
+        <img id="turn-sound-off" onclick="stopGameSound()" class="sound-icon" src="graphics/icons/no_sound_icon.svg" alt="stop game sound">
+        <img id="turn-sound-on" onclick="playGameSound()" class="sound-icon d-hide" src="graphics/icons/sound_on_icon.svg" alt="play game sound">
+
+    </div>
     <canvas id="canvas" width="720" height="480"></canvas>
 
     <div class="menu">
-        <p>Arrows left / right = Walk</p>
-        <p>Space = Jump</p>
-        <p>D = Throw Bottle</p>
-        <img id="turn-sound-off" onclick="stopGameSound()" class="sound-icon" src="graphics/icons/no_sound_icon.png" alt="stop sound">
-        <img id="turn-sound-on" onclick="playGameMusic()" class="sound-icon" src="graphics/icons/sound_icon.png" alt="play sound">
+        <p>Arrows left / right : Walk</p>
+        <p>Space : Jump</p>
+        <p>D : Throw Bottle</p>
+       <img id="settings-btn" onclick="openSettings()" class="settings-btn" src="graphics/icons/settings_icon.svg" alt="settings">
     </div>
     
 </body>
