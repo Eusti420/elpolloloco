@@ -1,0 +1,50 @@
+.d-hide {
+    display: none;
+}
+
+.d-block {
+    display: block;
+}
+
+.jc-sb {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.jc-c {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fd-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.fd-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.m-left40 {
+    margin-left: 40px;
+}
+
+.m-right40 {
+    margin-right: 40px;
+}
+
+.m-right14 {
+    margin-right: 14px;
+}
+
+.m-top20 {
+    margin-top: 20px;
+}
+
+.d-flex {
+    display: flex;
+}
