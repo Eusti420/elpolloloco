@@ -13,7 +13,6 @@ class World {
     statusbarCoin;
     statusbarBottle;
     throwableObject = [];
-    game_music = new Audio('audio/game_sound.mp3');
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');

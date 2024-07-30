@@ -2,6 +2,8 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 let gameMusic = new Audio('audio/game_sound.mp3');
+let sound = true;
+let music = true;
 
 function startGame() {
     document.getElementById('start-btn').classList.add('d-hide');
