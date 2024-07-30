@@ -52,37 +52,43 @@ function closeSettings() {
     settingsScreen.classList.add('d-hide');
 };
 
-function fullscreen() {
-    let fullscreen = document.getElementById('fullscreen');
-    document.getElementById('exit-fullscreen').classList.remove('d-hide');
-    openFullscreen(fullscreen);
-}
+document.addEventListener("fullscreenchange", function () {
+    let exitButton = document.getElementById('exit-fullscreen');
+    if (document.fullscreenElement) {
+        exitButton.classList.remove('d-hide');
+    } else {
+        exitButton.classList.add('d-hide');
+    }
+});
 
-function exitFullscreen () {
-    let fullscreen = document.getElementById('fullscreen');
-    document.getElementById('exit-fullscreen').classList.add('d-hide');
-    closeFullscreen(fullscreen);
+function fullscreen() {
+    let fullscreenElement = document.getElementById('fullscreen');
+    openFullscreen(fullscreenElement);
 };
 
-function openFullscreen(fullscreen) {
-    if (fullscreen.requestFullscreen) {
-      fullscreen.requestFullscreen();
-    } else if (elem.webkitRequestFullscreen) { /* Safari */
-      fullscreen.webkitRequestFullscreen();
-    } else if (elem.msRequestFullscreen) { /* IE11 */
-      fullscreen.msRequestFullscreen();
-    }
-  };
+function exitFullscreen() {
+    closeFullscreen();
+};
 
-  function closeFullscreen(fullscreen) {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) { /* Safari */
-      document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) { /* IE11 */
-      document.msExitFullscreen();
+function openFullscreen(elem) {
+    if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) { /* Safari */
+        elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { /* IE11 */
+        elem.msRequestFullscreen();
     }
-  };
+};
+
+function closeFullscreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) { /* Safari */
+        document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { /* IE11 */
+        document.msExitFullscreen();
+    }
+};
 
 
 
