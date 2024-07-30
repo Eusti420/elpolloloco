@@ -20,6 +20,16 @@ h1 {
     text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
 }
 
+h2 {
+    color: #F9D003;
+    font-weight: lighter;
+    text-decoration: underline;
+}
+
+.close-text {
+    color: #F9D003;
+}
+
 .starting-screen {
     background-image: url('graphics/9_intro_outro_screens/start/startscreen_1.png');
     background-position: center;
@@ -41,7 +51,7 @@ h1 {
     display: flex;
     justify-content: center;
     background-color: #000000;
-    opacity: 0.8;
+    opacity: 0.94;
 }
 
 .settings-btn {
@@ -53,6 +63,20 @@ h1 {
 .settings-btn:hover {
     cursor: pointer;
     transform: scale(1.2);
+}
+
+.figcaption {
+    color:  #FFD900;
+    font-weight: lighter;
+    font-size: 24px;
+    padding-left: 14px;
+}
+
+.sound-options-container {
+    display: flex;
+    padding-left: 14px;
+    padding-top: 14px;
+    gap: 14px;
 }
 
 .start-btn {
@@ -68,6 +92,7 @@ h1 {
     border: none;
 }
 
+
 .start-btn:hover {
     cursor: pointer;
     box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.5);
@@ -82,12 +107,68 @@ h1 {
     display: block;
 }
 
+.jc-sb {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.jc-c {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fd-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.fd-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.m-left40 {
+    margin-left: 40px;
+}
+
+.m-right40 {
+    margin-right: 40px;
+}
+
+.m-right14 {
+    margin-right: 14px;
+}
+
+.d-flex {
+    display: flex;
+}
+
 .menu {
     display: flex;
     align-items: center;
     font-size: 22px;
     gap: 24px;
     text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.policy-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 120px;
+}
+
+a {
+    color: #47C5C7;
+}
+
+a:hover {
+    cursor: pointer;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+    transform: scale(1.2);
 }
 
 canvas {
@@ -103,7 +184,8 @@ canvas {
     background-position: center;
     background-repeat: no-repeat;
     margin-top: 10px;
-    border-radius: 10px;
+    margin-bottom: 10px;
+    border-radius: 14px;
 }
 
 .sound-icon:hover {

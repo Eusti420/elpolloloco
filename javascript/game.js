@@ -31,11 +31,13 @@ function stopGameMusic() {
 };
 
 function stopGameSound() {
-    
+    document.getElementById('turn-sound-off').classList.add('d-hide');
+    document.getElementById('turn-sound-on').classList.remove('d-hide');
 };
 
 function playGameSound() {
-
+    document.getElementById('turn-sound-off').classList.remove('d-hide');
+    document.getElementById('turn-sound-on').classList.add('d-hide');
 };
 
 function openSettings() {

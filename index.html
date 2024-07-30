@@ -38,12 +38,25 @@
         <button id="start-btn" onclick="startGame()" class="start-btn">Start Game</button>
     </div>
     <div id="settings-screen" class="settings-screen d-hide">
-        <img id="close-settings" onclick="closeSettings()" class="close-btn" src="graphics/icons/close_icon.svg" alt="close button">
-        <img id="turn-music-off" onclick="stopGameMusic()" class="sound-icon d-hide" src="graphics/icons/pause_music_icon.svg" alt="stop music">
-        <img id="turn-music-on" onclick="playGameMusic()" class="sound-icon" src="graphics/icons/turn_music_on_icon.svg" alt="play music">
-
-        <img id="turn-sound-off" onclick="stopGameSound()" class="sound-icon" src="graphics/icons/no_sound_icon.svg" alt="stop game sound">
-        <img id="turn-sound-on" onclick="playGameSound()" class="sound-icon d-hide" src="graphics/icons/sound_on_icon.svg" alt="play game sound">
+        <div class="jc-sb m-left40 m-right40">
+            <h2>Settings</h2>
+            <div class="d-flex">
+            <p class="figcaption m-right14">Close</p>
+            <img id="close-settings" onclick="closeSettings()" class="close-btn" src="graphics/icons/close_icon.svg" alt="close button">
+            </div>
+        </div>
+        <div class="fd-row m-left40">
+            <img id="turn-music-off" onclick="stopGameMusic()" class="sound-icon d-hide" src="graphics/icons/pause_music_icon.svg" alt="stop music">
+            <img id="turn-music-on" onclick="playGameMusic()" class="sound-icon" src="graphics/icons/turn_music_on_icon.svg" alt="play music">
+            <p class="figcaption">Turn game music on / off</p>
+        </div>
+        <div class="fd-row m-left40">
+            <img id="turn-sound-off" onclick="stopGameSound()" class="sound-icon" src="graphics/icons/no_sound_icon.svg" alt="stop game sound">
+            <img id="turn-sound-on" onclick="playGameSound()" class="sound-icon d-hide" src="graphics/icons/sound_on_icon.svg" alt="play game sound">
+            <p class="figcaption">Turn game sound on / off</p>
+        </div>
+        <div class="jc-c m-left40 m-right40"><button id="start-btn" onclick="restartGame()" class="start-btn">Restart game</button></div>
+        <div class="policy-container m-left40 m-right40"><a href="">Legal Notice</a> <a href="">Private Policy</a></div> 
 
     </div>
     <canvas id="canvas" width="720" height="480"></canvas>
