@@ -22,14 +22,20 @@ function playGameMusic() {
     gameMusic.play();
     document.getElementById('turn-music-on').classList.add('d-hide');
     document.getElementById('turn-music-off').classList.remove('d-hide');
-    
-
 };
 
 function stopGameMusic() {
     gameMusic.pause();
     document.getElementById('turn-music-off').classList.add('d-hide');
     document.getElementById('turn-music-on').classList.remove('d-hide');
+};
+
+function stopGameSound() {
+    
+};
+
+function playGameSound() {
+
 };
 
 function openSettings() {
