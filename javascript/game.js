@@ -52,6 +52,38 @@ function closeSettings() {
     settingsScreen.classList.add('d-hide');
 };
 
+function fullscreen() {
+    let fullscreen = document.getElementById('fullscreen');
+    document.getElementById('exit-fullscreen').classList.remove('d-hide');
+    openFullscreen(fullscreen);
+}
+
+function exitFullscreen () {
+    let fullscreen = document.getElementById('fullscreen');
+    document.getElementById('exit-fullscreen').classList.add('d-hide');
+    closeFullscreen(fullscreen);
+};
+
+function openFullscreen(fullscreen) {
+    if (fullscreen.requestFullscreen) {
+      fullscreen.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) { /* Safari */
+      fullscreen.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { /* IE11 */
+      fullscreen.msRequestFullscreen();
+    }
+  };
+
+  function closeFullscreen(fullscreen) {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) { /* Safari */
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { /* IE11 */
+      document.msExitFullscreen();
+    }
+  };
+
 
 
 window.addEventListener("keydown", (e) => {

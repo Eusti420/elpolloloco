@@ -60,14 +60,18 @@
         <div class="policy-container m-left40 m-right40"><a href="">Legal Notice</a> <a href="">Private Policy</a></div> 
 
     </div>
-    <canvas id="canvas" width="720" height="480"></canvas>
+    <div id="fullscreen">
+        <img id="exit-fullscreen" onclick="exitFullscreen()" class="close-btn d-hide" src="graphics/icons/close_icon.svg" alt="close button">
 
+        <canvas id="canvas" width="720" height="480"></canvas>
+    </div>
+    
     <div class="menu">
         <p>Arrows left / right: Walk</p>
         <p>Space: Jump</p>
         <p>D: Throw Bottle</p>
        <img id="settings-btn" onclick="openSettings()" class="settings-btn" src="graphics/icons/settings_icon_1.svg" alt="settings">Settings
-       <img id="fullscreen" onclick="turnFullscreenOn()" class="fullscreen-btn" src="graphics/icons/fullscreen_icon.svg" alt="fullscreen">Fullscreen
+       <img id="fullscreen-btn" onclick="fullscreen()" class="fullscreen-btn" src="graphics/icons/fullscreen_icon.svg" alt="fullscreen">Fullscreen
     </div>
     
 </body>
