@@ -116,9 +116,17 @@ class Character extends MovableObject {
 
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
-                if (sound) this.jumping_sound.play();
-                if (sound) this.walking_sound.pause();
+                if (sound == true) {
+                    this.jumping_sound.volume = 0.8;
+                    this.jumping_sound.loop = false;
+                    this.jumping_sound.play();
+                }
 
+                setTimeout (() => {
+                    this.walking_sound.pause();
+                    this.jumping_sound.pause();
+                    this.jumping_sound.currentTime = 0;
+                }, 1000);
             } 
 
             this.world.camera_x = -this.x + 100;
