@@ -55,29 +55,29 @@ class Character extends MovableObject {
     ];
 
     IMAGES_IDLE = [
-        "assets/img/2_character_pepe/1_idle/idle/I-1.png",
-        "assets/img/2_character_pepe/1_idle/idle/I-2.png",
-        "assets/img/2_character_pepe/1_idle/idle/I-3.png",
-        "assets/img/2_character_pepe/1_idle/idle/I-4.png",
-        "assets/img/2_character_pepe/1_idle/idle/I-5.png",
-        "assets/img/2_character_pepe/1_idle/idle/I-6.png",
-        "assets/img/2_character_pepe/1_idle/idle/I-7.png",
-        "assets/img/2_character_pepe/1_idle/idle/I-8.png",
-        "assets/img/2_character_pepe/1_idle/idle/I-9.png",
-        "assets/img/2_character_pepe/1_idle/idle/I-10.png"
+        'graphics/2_character_pepe/1_idle/idle/I-1.png',
+        'graphics/2_character_pepe/1_idle/idle/I-2.png',
+        'graphics/2_character_pepe/1_idle/idle/I-3.png',
+        'graphics/2_character_pepe/1_idle/idle/I-4.png',
+        'graphics/2_character_pepe/1_idle/idle/I-5.png',
+        'graphics/2_character_pepe/1_idle/idle/I-6.png',
+        'graphics/2_character_pepe/1_idle/idle/I-7.png',
+        'graphics/2_character_pepe/1_idle/idle/I-8.png',
+        'graphics/2_character_pepe/1_idle/idle/I-9.png',
+        'graphics/2_character_pepe/1_idle/idle/I-10.png',
     ];
 
     IMAGES_SLEEPING = [
-        "assets/img/2_character_pepe/1_idle/long_idle/I-11.png",
-        "assets/img/2_character_pepe/1_idle/long_idle/I-12.png",
-        "assets/img/2_character_pepe/1_idle/long_idle/I-13.png",
-        "assets/img/2_character_pepe/1_idle/long_idle/I-14.png",
-        "assets/img/2_character_pepe/1_idle/long_idle/I-15.png",
-        "assets/img/2_character_pepe/1_idle/long_idle/I-16.png",
-        "assets/img/2_character_pepe/1_idle/long_idle/I-17.png",
-        "assets/img/2_character_pepe/1_idle/long_idle/I-18.png",
-        "assets/img/2_character_pepe/1_idle/long_idle/I-19.png",
-        "assets/img/2_character_pepe/1_idle/long_idle/I-20.png"
+        'graphics/2_character_pepe/1_idle/long_idle/I-11.png',
+        'graphics/2_character_pepe/1_idle/long_idle/I-12.png',
+        'graphics/2_character_pepe/1_idle/long_idle/I-13.png',
+        'graphics/2_character_pepe/1_idle/long_idle/I-14.png',
+        'graphics/2_character_pepe/1_idle/long_idle/I-15.png',
+        'graphics/2_character_pepe/1_idle/long_idle/I-16.png',
+        'graphics/2_character_pepe/1_idle/long_idle/I-17.png',
+        'graphics/2_character_pepe/1_idle/long_idle/I-18.png',
+        'graphics/2_character_pepe/1_idle/long_idle/I-19.png',
+        'graphics/2_character_pepe/1_idle/long_idle/I-20.png',
     ];
 
     
