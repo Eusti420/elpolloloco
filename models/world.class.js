@@ -12,6 +12,7 @@ class World {
     statusbarHealth;
     statusbarCoin;
     statusbarBottle;
+    throwing_sound = new Audio('audio/throwing_sound.mp3');
     throwableObject = [];
 
     constructor(canvas, keyboard) {
@@ -28,11 +29,11 @@ class World {
 
     setWorld() {
         this.character.world = this;
-    }
-
-    
-    
+    };
    
+    throwing_sound() {
+
+    };
 
     run() {
         setInterval(() => {
@@ -48,14 +49,25 @@ class World {
                 this.statusbarHealth.setPercentage(this.character.energy);
             }
         });
-    }
+    };
 
     checkThrowObject() {
         if (this.keyboard.D) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObject.push(bottle);
-        }
-    }
+            if (sound == true) {
+                this.throwing_sound.volume = 1;
+                this.throwing_sound.loop = false;
+                this.throwing_sound.play();
+            }
+
+            setTimeout(() => {
+                this.throwing_sound.pause();
+                this.throwing_sound.currentTime = 0;
+            }, 1000);
+            
+        };
+    };
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -107,10 +119,10 @@ class World {
         this.ctx.translate(mo.width, 0);
         this.ctx.scale(-1, 1);
         mo.x = mo.x * -1;
-    }
+    };
 
     reverseMirrorImage(mo) {
         mo.x = mo.x * -1;
         this.ctx.restore();
-    }
-}
+    };
+};
