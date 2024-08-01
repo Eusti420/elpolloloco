@@ -1,4 +1,4 @@
-class ThrowableObject extends MovableObject {
+class ThrowableObject extends MoveableObject {
     
 
     IMAGES_BOTTLE_GROUND = [
