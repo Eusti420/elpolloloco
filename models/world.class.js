@@ -4,24 +4,26 @@
  */
 class World {
     character = new Character();
+    characterBars = [
+        new StatusBarHealth(10),
+        new StatusBarBottle(),
+        new StatusBarCoin()
+    ];
+    bossHealthBar = new StatusBarEndboss(2800);
+    endBoss = new Endboss();
     level = level1;
     ctx;
     canvas;
     keyboard;
     camera_x = 0;
-    statusbarHealth;
-    statusbarCoin;
-    statusbarBottle;
     throwing_sound = new Audio('audio/throwing_sound.mp3');
     throwableObject = [];
+    splashes = [];
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
-        this.statusbarHealth = new Statusbar(40, 0, 'health');
-        this.statusbarCoin = new Statusbar(40, 50, 'coin');
-        this.statusbarBottle = new Statusbar(40, 100, 'bottle');
         this.draw();
         this.setWorld();
         this.run();
@@ -29,6 +31,9 @@ class World {
 
     setWorld() {
         this.character.world = this;
+        this.character.healthBar = this.characterBars[0];
+        this.endBoss.world = this;
+        this.endBoss.healthBar = this.bossHealthBar;
     };
    
     throwing_sound() {
@@ -46,7 +51,7 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
-                this.statusbarHealth.setPercentage(this.character.energy);
+                this.character.healthBar.setPercentage(this.character.energy);
             }
         });
     };
@@ -75,14 +80,13 @@ class World {
         this.ctx.translate(this.camera_x, 0);
         
         this.addObjectsToMap(this.level.backgroundObjects);
-        this.addObjectsToMap(this.level.coin);
-        this.addObjectsToMap(this.level.cloud);
+        
+        this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
 
         this.ctx.translate(-this.camera_x, 0);
-        this.addToMap(this.statusbarHealth);
-        this.addToMap(this.statusbarCoin);
-        this.addToMap(this.statusbarBottle);
+        this.addBarsToCanvas();
         this.ctx.translate(this.camera_x, 0);
 
         this.addObjectsToMap(this.throwableObject);
@@ -95,6 +99,11 @@ class World {
         });
     };
 
+    addBarsToCanvas() {
+      this.addObjectsToMap(this.characterBars);
+        this.addToMap(this.bossHealthBar);
+    };
+
     addObjectsToMap(objects) {
         objects.forEach(o => {
             this.addToMap(o);
@@ -104,12 +113,11 @@ class World {
     addToMap(mo) {
         if (mo.otherDirection) {
             this.mirrorImage(mo);
-        }
+        } 
+            mo.draw(this.ctx);
+            mo.drawFrame(this.ctx);
 
-        mo.draw(this.ctx);
-        mo.drawFrame(this.ctx);
-
-        if (mo.otherDirection) {
+         if (mo.otherDirection) {
             this.reverseMirrorImage(mo);
         }
     };

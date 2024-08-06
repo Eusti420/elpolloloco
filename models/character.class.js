@@ -4,6 +4,8 @@ class Character extends MoveableObject {
     y = 10;
     speed = 8;
     world;
+    healthBar;
+    heatth_percentage;
     walking_sound = new Audio('audio/walking.mp3');
     jumping_sound = new Audio('audio/jump_sound.mp3');
     sleeping_sound= new Audio('audio/snoring_pepe_sound.mp3');

@@ -1,5 +1,5 @@
 class MoveableObject extends DrawableObject {
-
+    
     speed = 0.15;
     otherDirection = false;
     speedY = 0;
@@ -9,7 +9,7 @@ class MoveableObject extends DrawableObject {
 
     applyGravity() {
         setInterval(() => {
-            if(this.isAboveGround() || this.speedY > 0)
+            if(this.isAboveGround() || this.speedY > 0)'graphics/6_salsa_bottle/bottle_rotation/bottle_splash/1_bottle_splash.png',
             this.y -= this.speedY;
             this.speedY -= this.acceleration;
         }, 1000 / 25);
