@@ -8,7 +8,7 @@ let music = true;
 function startGame() {
     document.getElementById('start-btn').classList.add('d-hide');
     document.getElementById('starting-screen').classList.add('d-hide');
-    initLevel();
+    new LevelInitializer();
     init();
     playGameMusic();
 };

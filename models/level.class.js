@@ -1,13 +1,11 @@
-/**
- * level class, which can be used inside world class
- */
+
 class Level {
     enemies;
     clouds;
     backgroundObjects;
     coins;
     bottles;
-    level_end_x = 2200;
+    level_end_x = 2880;
 
     constructor(enemies, clouds, backgroundObjects, coins, bottles) {
         this.enemies = enemies;

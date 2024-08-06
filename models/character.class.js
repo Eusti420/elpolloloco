@@ -13,7 +13,7 @@ class Character extends MoveableObject {
     isJumping = false;
     isThrowing = false;
     isSleeping = false;
-    ableToThrow = true;
+    canThrow = true;
     hitChicken = false;
     idleTimeout;
     sleepingTimeout = 4000;

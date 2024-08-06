@@ -79,12 +79,10 @@ class World {
 
         this.ctx.translate(this.camera_x, 0);
         
-        this.addObjectsToMap(this.level.backgroundObjects);
+        this.addBackgroundsAndCollectables();
+        this.drawEnemies();
         
-        this.addObjectsToMap(this.level.coins);
-        this.addObjectsToMap(this.level.clouds);
-        this.addObjectsToMap(this.level.enemies);
-
+        
         this.ctx.translate(-this.camera_x, 0);
         this.addBarsToCanvas();
         this.ctx.translate(this.camera_x, 0);
@@ -99,8 +97,10 @@ class World {
         });
     };
 
+
+
     addBarsToCanvas() {
-      this.addObjectsToMap(this.characterBars);
+        this.addObjectsToMap(this.characterBars);
         this.addToMap(this.bossHealthBar);
     };
 
@@ -110,12 +110,24 @@ class World {
         });
     };
 
+    addBackgroundsAndCollectables() {
+        const {backgroundObjects, clouds, coins, bottles} = this.level;
+        this.addObjectsToMap(backgroundObjects);
+        this.addObjectsToMap(clouds);
+        this.addObjectsToMap(coins);
+        this.addObjectsToMap(bottles);
+    };
+
+    drawEnemies() {
+        this.addObjectsToMap(this.level.enemies);
+        this.addToMap(this.endBoss);
+    };
+
     addToMap(mo) {
         if (mo.otherDirection) {
             this.mirrorImage(mo);
         } 
             mo.draw(this.ctx);
-            mo.drawFrame(this.ctx);
 
          if (mo.otherDirection) {
             this.reverseMirrorImage(mo);
