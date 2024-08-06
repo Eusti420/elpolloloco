@@ -1,7 +1,8 @@
 class Character extends MoveableObject {
     height = 260;
     width = 120;
-    y = 10;
+    y = 170;
+    x = 50;
     speed = 8;
     world;
     healthBar;

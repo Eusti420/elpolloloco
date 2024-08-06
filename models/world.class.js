@@ -82,9 +82,9 @@ class World {
         this.addBackgroundsAndCollectables();
         this.drawEnemies();
         
-        
         this.ctx.translate(-this.camera_x, 0);
         this.addBarsToCanvas();
+      
         this.ctx.translate(this.camera_x, 0);
 
         this.addObjectsToMap(this.throwableObject);

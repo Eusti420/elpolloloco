@@ -1,7 +1,5 @@
 class Chicken extends MoveableObject {
-    height = 60;
-    width = 60;
-    y = 370;
+    offsetY;
     walking_sound = new Audio('audio/chicken.mp3');
     dying_sound = new Audio('audio/chicken_die_sound.mp3');
     
@@ -15,12 +13,15 @@ class Chicken extends MoveableObject {
         'graphics/3_enemies_chicken/chicken_normal/2_dead/dead.png'
     ];
 
-    constructor() {
+    constructor(i) {
         super().loadImage('graphics/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
+        this.height = 50;
+        this.width = 50;
+        this.y = 395;
+        this.offsetY = this.y;
+        this.x = (Math.random() * 700 + 300) * i + 300;
+        this.speed = 0.5 + Math.random() * 1.5;
         this.loadImages(this.IMAGES_WALKING);
-        this.loadImages(this.IMAGES_DEAD);
-        this.x = 400 + Math.random() * 1400;
-        this.speed = 0.4 + Math.random() * 1;
         this.animate();
     }
 
@@ -34,6 +35,13 @@ class Chicken extends MoveableObject {
         }, 150);
     }
 
-    
+    chickenOffset() {
+        this.offset = {
+            width: 50,
+            height: 50,
+            x: this.x,
+            y: this.offsetY
+        };
+    };
 
 }

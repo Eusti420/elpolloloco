@@ -1,11 +1,18 @@
 class MoveableObject extends DrawableObject {
-    
     speed = 0.15;
     otherDirection = false;
     speedY = 0;
     acceleration = 2.5;
     energy = 100;
     lastHit = 0;
+
+    constructor(x, y, speed) {
+        super();
+        this.x = x;
+        this.y = y;
+        this.speed = speed;
+        this.defaul_positionY = this.y;
+    }
 
     applyGravity() {
         setInterval(() => {
@@ -19,7 +26,7 @@ class MoveableObject extends DrawableObject {
         if (this instanceof ThrowableObject) {
             return true;
         } else  {
-            return this.y < 160;
+            return this.y < 170;
         }
        
     };

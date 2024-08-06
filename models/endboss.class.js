@@ -7,7 +7,7 @@ class Endboss extends MoveableObject {
     health_percentage;
     invincible = true;
     x = 2600;
-    y = 110;
+    y = -170;
     default_positionY = this.y;
     offset = {
         width: 250,

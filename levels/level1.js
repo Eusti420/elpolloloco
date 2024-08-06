@@ -48,13 +48,32 @@ class LevelInitializer {
     };
 
     generateBackgroundArray() {
-        background = [];
-            for (let i = 0; i <= 4; i++) {
-                background.push(new Sky(720 * i, 0));
-                background.push(new Background(720 * i, this.y - 1, 3));
-                background.push(new Background(720 * i, this.y - 1, 2));
-                background.push(new Background(720 * i, this.y - 1, 1));
-            };
+        background = [
+            new BackgroundObject('graphics/5_background/layers/air.png', -719),
+            new BackgroundObject('graphics/5_background/layers/3_third_layer/2.png', -719),
+            new BackgroundObject('graphics/5_background/layers/2_second_layer/2.png', -719),
+            new BackgroundObject('graphics/5_background/layers/1_first_layer/2.png', -719),
+    
+            new BackgroundObject('graphics/5_background/layers/air.png', 0),
+            new BackgroundObject('graphics/5_background/layers/3_third_layer/1.png', 0),
+            new BackgroundObject('graphics/5_background/layers/2_second_layer/1.png', 0),
+            new BackgroundObject('graphics/5_background/layers/1_first_layer/1.png', 0),
+    
+            new BackgroundObject('graphics/5_background/layers/air.png', 719),
+            new BackgroundObject('graphics/5_background/layers/3_third_layer/2.png', 719),
+            new BackgroundObject('graphics/5_background/layers/2_second_layer/2.png', 719),
+            new BackgroundObject('graphics/5_background/layers/1_first_layer/2.png', 719),
+    
+            new BackgroundObject('graphics/5_background/layers/air.png', 1438),
+            new BackgroundObject('graphics/5_background/layers/3_third_layer/1.png', 1438),
+            new BackgroundObject('graphics/5_background/layers/2_second_layer/1.png', 1438),
+            new BackgroundObject('graphics/5_background/layers/1_first_layer/1.png', 1438),
+    
+            new BackgroundObject('graphics/5_background/layers/air.png', 2157),
+            new BackgroundObject('graphics/5_background/layers/3_third_layer/2.png', 2157),
+            new BackgroundObject('graphics/5_background/layers/2_second_layer/2.png', 2157),
+            new BackgroundObject('graphics/5_background/layers/1_first_layer/2.png', 2157),
+        ]
     };
 
     generateCloudArray() {
@@ -89,19 +108,23 @@ const levelInitializer = new LevelInitializer();
 
 function resetLevel(enemies, background, cloud, coins, bottles) {
     level1 = new Level(
-        enemies,
+       
         background,
+        enemies,
         cloud,
         coins,
         bottles
     );
 };
 
+
+
+
 let level1 = new Level(
-    enemies,
+   
     background,
+    enemies,
     cloud,
     coins,
     bottles
 );
-
