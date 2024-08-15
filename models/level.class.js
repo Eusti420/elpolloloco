@@ -1,17 +1,16 @@
-
 class Level {
+    level_limit = 2880;
     enemies;
-    clouds;
     backgroundObjects;
+    clouds;
     coins;
-    bottles;
-    level_end_x = 2200;
+    bottles
 
-    constructor(enemies, clouds, backgroundObjects, coins, bottles) {
+    constructor(enemies, backgroundObjects, clouds, coins, bottles) {
         this.enemies = enemies;
+        this.backgroundObjects = backgroundObjects;
+        this.clouds = clouds;
         this.coins = coins;
         this.bottles = bottles;
-        this.clouds = clouds;
-        this.backgroundObjects = backgroundObjects;
-    }
-}
+    };
+};

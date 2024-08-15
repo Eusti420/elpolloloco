@@ -1,27 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="en" translate="no">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El Pollo Loco</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="assests.style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ga+Maamli&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="graphics/icons/fav_icon_el_pollo_loco.png">
-
+    <link rel="icon" type="image/x-icon" href="assets/img/icons/fav_icon_el_pollo_loco.png">
+    <title>El Pollo Locco</title>
+    <link rel="stylesheet" href="style.css">
     <script src="models/world.class.js"></script>
     <script src="models/drawable-object.class.js"></script>
     <script src="models/moveable-object.class.js"></script>
     <script src="models/status-bar.class.js"></script>
+    <script src="models/status-bar-bottleclass.js"></script>
+    <script src="models/status-bar-coins.class.js"></script>
     <script src="models/status-bar-health.class.js"></script>
-    <script src="models/status-bar-bottle.class.js"></script>
-    <script src="models/status-bar-coin.class.js"></script>
-    <script src="models/status-bar-endboss.class.js"></script>
+    <script src="models/status-bar-boss-health.class.js"></script>
+    <script src="models/background.class.js"></script>
     <script src="models/clouds.class.js"></script>
-    <script src="models/background-object.class.js"></script>
-    
     <script src="models/character.class.js"></script>
     <script src="models/chicken.class.js"></script>
     <script src="models/endboss.class.js"></script>
@@ -30,58 +27,132 @@
     <script src="models/level.class.js"></script>
     <script src="models/bottle.class.js"></script>
     <script src="models/keyboard.class.js"></script>
-    <script src="models/throwable-object.class.js"></script>
+    <script src="models/throwable-objects.class.js"></script>
     <script src="models/splash.class.js"></script>
-    <script src="levels/level1.js"></script>
-    <script src="javascript/game.js"></script>
-    
-
+    <script src="script/game.js"></script>
+    <script src="levels/level1-class.js"></script>
+    <script src="script/script.js" defer></script>
+    <script src="script/overlay.js"></script>
 </head>
 
-<body>
-    
-    <h1>El Pollo Loco</h1>
-
-
-    <div id="starting-screen" class="starting-screen">
-        <img class="starting-img" src="graphics/9_intro_outro_screens/start/startscreen_1.png" alt="">
-        <button id="start-btn" onclick="startGame()" class="start-btn">Start Game</button>
+<body onload="mobileListener()">
+    <h1>EL POLLO LOCO</h1>
+    <div id="startScreen">
+        <div class="rotate-device">
+            <div class="rotate-text">SWITCH TO LANDSCAPE MODE</div>
+            <img class="rotate-img" src="assets/img/icons/landscape_mode_img.svg" alt="switch to mobile landscape mode">
+        </div>
+        <div id="overlay" class="overlay d-none">
+            <div class="menu">
+                <img class="menu-btn" onclick="changeMusic('music-btn')" id="music-btn" src="assets/img/icons/no_music.svg" alt="change game music">
+                <img class="menu-btn" onclick="changeSound('sound-btn')" id="sound-btn"src="assets/img/icons/no_sound.svg" alt="change game sound">
+            </div>
+            <div class="polices">
+                <a href="./impressum.html">Legal Notice</a>
+                <a href="./privat-policy.html">Privacy Police</a>
+            </div>
+            <div onclick="init()" class="restart">PLAY</div>
+        </div>
+        <svg onclick="openMenu()" class="settings-mobile" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+            fill="currentColor" class="bi bi-gear-wide-connected" viewBox="0 0 16 16">
+            <path
+                d="M7.068.727c.243-.97 1.62-.97 1.864 0l.071.286a.96.96 0 0 0 1.622.434l.205-.211c.695-.719 1.888-.03 1.613.931l-.08.284a.96.96 0 0 0 1.187 1.187l.283-.081c.96-.275 1.65.918.931 1.613l-.211.205a.96.96 0 0 0 .434 1.622l.286.071c.97.243.97 1.62 0 1.864l-.286.071a.96.96 0 0 0-.434 1.622l.211.205c.719.695.03 1.888-.931 1.613l-.284-.08a.96.96 0 0 0-1.187 1.187l.081.283c.275.96-.918 1.65-1.613.931l-.205-.211a.96.96 0 0 0-1.622.434l-.071.286c-.243.97-1.62.97-1.864 0l-.071-.286a.96.96 0 0 0-1.622-.434l-.205.211c-.695.719-1.888.03-1.613-.931l.08-.284a.96.96 0 0 0-1.186-1.187l-.284.081c-.96.275-1.65-.918-.931-1.613l.211-.205a.96.96 0 0 0-.434-1.622l-.286-.071c-.97-.243-.97-1.62 0-1.864l.286-.071a.96.96 0 0 0 .434-1.622l-.211-.205c-.719-.695-.03-1.888.931-1.613l.284.08a.96.96 0 0 0 1.187-1.186l-.081-.284c-.275-.96.918-1.65 1.613-.931l.205.211a.96.96 0 0 0 1.622-.434zM12.973 8.5H8.25l-2.834 3.779A4.998 4.998 0 0 0 12.973 8.5m0-1a4.998 4.998 0 0 0-7.557-3.779l2.834 3.78zM5.048 3.967l-.087.065zm-.431.355A4.98 4.98 0 0 0 3.002 8c0 1.455.622 2.765 1.615 3.678L7.375 8zm.344 7.646.087.065z" />
+        </svg>
+        <div class="play" onclick="init()">
+            PLAY
+          
+        </div>
+        <div class="keys-controls_screen">
+            <div><svg xmlns="http://www.w3.org/2000/svg" width="36" height="64" fill="currentColor"
+                    class="bi bi-arrow-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+                </svg>:LEFT</div>
+            <div><svg xmlns="http://www.w3.org/2000/svg" width="36" height="64" fill="currentColor"
+                    class="bi bi-arrow-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+                </svg> :RIGHT</div>
+            <div><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor"
+                    class="bi bi-arrow-up" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5" />
+                </svg> :JUMP</div>
+            <div>
+                <p class="throw">D</p>:THROW
+            </div>
+            <div><svg onclick="openMenu()" class="settings" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                    fill="currentColor" class="bi bi-gear-wide-connected" viewBox="0 0 16 16">
+                    <path
+                        d="M7.068.727c.243-.97 1.62-.97 1.864 0l.071.286a.96.96 0 0 0 1.622.434l.205-.211c.695-.719 1.888-.03 1.613.931l-.08.284a.96.96 0 0 0 1.187 1.187l.283-.081c.96-.275 1.65.918.931 1.613l-.211.205a.96.96 0 0 0 .434 1.622l.286.071c.97.243.97 1.62 0 1.864l-.286.071a.96.96 0 0 0-.434 1.622l.211.205c.719.695.03 1.888-.931 1.613l-.284-.08a.96.96 0 0 0-1.187 1.187l.081.283c.275.96-.918 1.65-1.613.931l-.205-.211a.96.96 0 0 0-1.622.434l-.071.286c-.243.97-1.62.97-1.864 0l-.071-.286a.96.96 0 0 0-1.622-.434l-.205.211c-.695.719-1.888.03-1.613-.931l.08-.284a.96.96 0 0 0-1.186-1.187l-.284.081c-.96.275-1.65-.918-.931-1.613l.211-.205a.96.96 0 0 0-.434-1.622l-.286-.071c-.97-.243-.97-1.62 0-1.864l.286-.071a.96.96 0 0 0 .434-1.622l-.211-.205c-.719-.695-.03-1.888.931-1.613l.284.08a.96.96 0 0 0 1.187-1.186l-.081-.284c-.275-.96.918-1.65 1.613-.931l.205.211a.96.96 0 0 0 1.622-.434zM12.973 8.5H8.25l-2.834 3.779A4.998 4.998 0 0 0 12.973 8.5m0-1a4.998 4.998 0 0 0-7.557-3.779l2.834 3.78zM5.048 3.967l-.087.065zm-.431.355A4.98 4.98 0 0 0 3.002 8c0 1.455.622 2.765 1.615 3.678L7.375 8zm.344 7.646.087.065z" />
+                </svg></div>
+        </div>
+        <img id="start_screen-background" src="assets/img/9_intro_outro_screens/start/startscreen_1.png" alt="">
     </div>
-    <div id="settings-screen" class="settings-screen d-hide">
-        <div class="jc-sb m-left40 m-right40">
-            <h2>Settings</h2>
-            <div class="d-flex">
-            <p class="figcaption m-right14">Close</p>
-            <img id="close-settings" onclick="closeSettings()" class="close-btn" src="graphics/icons/close_icon.svg" alt="close button">
+    <div id="screen" width="720" height="480" class="canvas d-none">
+        <div class="rotate-device">
+            <div class="rotate-text">SWITCH TO LANDSCAPE MODE</div>
+            <img class="rotate-img" src="assets/img/icons/landscape_mode_img.svg" alt="">
+        </div>
+        <div id="game-overlay" class="d-none overlay">
+        </div>
+        <svg onclick="openGameMenu()" class="settings" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+            fill="currentColor" class="bi bi-gear-wide-connected" viewBox="0 0 16 16">
+            <path
+                d="M7.068.727c.243-.97 1.62-.97 1.864 0l.071.286a.96.96 0 0 0 1.622.434l.205-.211c.695-.719 1.888-.03 1.613.931l-.08.284a.96.96 0 0 0 1.187 1.187l.283-.081c.96-.275 1.65.918.931 1.613l-.211.205a.96.96 0 0 0 .434 1.622l.286.071c.97.243.97 1.62 0 1.864l-.286.071a.96.96 0 0 0-.434 1.622l.211.205c.719.695.03 1.888-.931 1.613l-.284-.08a.96.96 0 0 0-1.187 1.187l.081.283c.275.96-.918 1.65-1.613.931l-.205-.211a.96.96 0 0 0-1.622.434l-.071.286c-.243.97-1.62.97-1.864 0l-.071-.286a.96.96 0 0 0-1.622-.434l-.205.211c-.695.719-1.888.03-1.613-.931l.08-.284a.96.96 0 0 0-1.186-1.187l-.284.081c-.96.275-1.65-.918-.931-1.613l.211-.205a.96.96 0 0 0-.434-1.622l-.286-.071c-.97-.243-.97-1.62 0-1.864l.286-.071a.96.96 0 0 0 .434-1.622l-.211-.205c-.719-.695-.03-1.888.931-1.613l.284.08a.96.96 0 0 0 1.187-1.186l-.081-.284c-.275-.96.918-1.65 1.613-.931l.205.211a.96.96 0 0 0 1.622-.434zM12.973 8.5H8.25l-2.834 3.779A4.998 4.998 0 0 0 12.973 8.5m0-1a4.998 4.998 0 0 0-7.557-3.779l2.834 3.78zM5.048 3.967l-.087.065zm-.431.355A4.98 4.98 0 0 0 3.002 8c0 1.455.622 2.765 1.615 3.678L7.375 8zm.344 7.646.087.065z" />
+        </svg>
+        <canvas id="canvas" width="720" height="480"></canvas>
+        <div class="mobile ">
+            <div id="left-hand" class="row">
+                <div class="mobile-btn" id="left">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="64" fill="currentColor"
+                        class="bi bi-arrow-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+                    </svg>
+                </div>
+                <div class="mobile-btn" id="right">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="64" fill="currentColor"
+                        class="bi bi-arrow-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+                    </svg>
+                </div>
+            </div>
+            <div id="right-hand" class="row">
+                <div class="mobile-btn" id="jump">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor"
+                        class="bi bi-arrow-up" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5" />
+                    </svg>
+                </div>
+                <div class="mobile-btn" id="throw">
+                    <img src="assets/img/6_salsa_bottle/bottle_rotation/4_bottle_rotation.png" alt="">
+                </div>
             </div>
         </div>
-        <div class="fd-row m-left40">
-            <img id="turn-music-off" onclick="stopGameMusic()" class="sound-icon d-hide" src="graphics/icons/pause_music_icon.svg" alt="stop music">
-            <img id="turn-music-on" onclick="playGameMusic()" class="sound-icon" src="graphics/icons/turn_music_on_icon.svg" alt="play music">
-            <p class="figcaption">Turn game music on / off</p>
+        <div class="keys">
+            <div><svg xmlns="http://www.w3.org/2000/svg" width="36" height="64" fill="currentColor"
+                    class="bi bi-arrow-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+                </svg> :LEFT</div>
+            <div><svg xmlns="http://www.w3.org/2000/svg" width="36" height="64" fill="currentColor"
+                    class="bi bi-arrow-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+                </svg> :RIGHT</div>
+            <div><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor"
+                    class="bi bi-arrow-up" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5" />
+                </svg> :JUMP</div>
+            <div>D:THROW</div>
         </div>
-        <div class="fd-row m-left40">
-            <img id="turn-sound-off" onclick="stopGameSound()" class="sound-icon" src="graphics/icons/no_sound_icon.svg" alt="stop game sound">
-            <img id="turn-sound-on" onclick="playGameSound()" class="sound-icon d-hide" src="graphics/icons/sound_on_icon.svg" alt="play game sound">
-            <p class="figcaption">Turn game sound on / off</p>
-        </div>
-        <div class="jc-c m-left40 m-right40"><button id="start-btn" onclick="restartGame()" class="start-btn">Restart game</button></div>
-        <div class="policy-container m-left40 m-right40"><a href="">Legal Notice</a> <a href="">Private Policy</a></div> 
+    </div>
 
-    </div>
-    <div id="fullscreen">
-        <img id="exit-fullscreen" onclick="exitFullscreen()" class="close-fullscreen-btn d-hide" src="graphics/icons/close_icon.svg" alt="close button">
 
-        <canvas id="canvas" width="720" height="480"></canvas>
-    </div>
-    
-    <div class="menu">
-        <p>Arrows left / right: Walk</p>
-        <p>Space: Jump</p>
-        <p>D: Throw Bottle</p>
-       <img id="settings-btn" onclick="openSettings()" class="settings-btn" src="graphics/icons/settings_icon_1.svg" alt="settings">Settings
-       <img id="fullscreen-btn" onclick="fullscreen()" class="fullscreen-btn" src="graphics/icons/fullscreen_icon.svg" alt="fullscreen">Fullscreen
-    </div>
-    
 </body>
+
 </html>
