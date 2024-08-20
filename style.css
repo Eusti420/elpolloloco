@@ -312,8 +312,15 @@ span {
     gap: 12rem;
 }
 
+.menu-ingame {
+    display: flex;
+    padding: 2rem;
+    height: 100%;
+}
+
 .menu-btn {
     border-radius: 8px;
+    height: 64px;
 }
 
 .menu>#full_screen-btn {
@@ -479,14 +486,15 @@ li {
 
 .polices {
     display: flex;
-    justify-content: space-evenly;
-    font-size: 24px;
-    width: 720px;
+    position: absolute;
+    bottom: 220px;
+    right: 136px;
+    gap: 30px;
 }
 
 .polices a {
     text-decoration: none;
-    color: #000000;
+    color: #eedd44;
     padding-top: 12px;
     font-size: 36px;
 }
@@ -495,6 +503,7 @@ li {
    cursor: pointer;
    transform: scale(1.2);
 }
+
 
 @keyframes zoomIn {
     0% {
@@ -607,10 +616,10 @@ li {
         display: none;
     }
 
-
     .backtoindex {
         top: 0px;
     }
+
 }
 
 @media only screen and (min-width: 450px) and (max-width: 600px) {
@@ -646,11 +655,25 @@ li {
     .polices {
         position: absolute;
         bottom: 180px;
-        left: 90px;
-        right: 0;
+        right: 160px;
     }
 
+    .polices a {
+        color: #eedd44;
+    }
     
+    .policy {
+        padding-top: 0px;
+    }
+
+    .impressum {
+        padding-top: 0px;
+    }
+
+    .backtoindex {
+        top: 0px;
+    }
+
     #start_screen-background {
         height: 100%;
     }

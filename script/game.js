@@ -24,8 +24,6 @@ function init() {
     pushExtraIntervals();
 };
 
-
-
 /**
  * Pushes the animation intervals of all enemies in the world to the intervalIds array.
  */

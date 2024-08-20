@@ -38,12 +38,16 @@ function showGameMenu() {
     gameOver.innerHTML = /*html*/`
         <div class="menu">
             <img class="menu-btn" onclick="changeMusic('game-music-btn')" id="game-music-btn"
-                src="assets/img/icons/no_music.svg" alt="assets/img/icons/no_music.svg">
+                src="assets/img/icons/no_music.svg" alt="mute game music">
             <img class="menu-btn" onclick="changeSound('game-sound-btn')" id="game-sound-btn"
                 src="assets/img/icons/no_sound.svg" alt="mute game sound">
             <img class="menu-btn" onclick="fullScreen(),restartGame()" id="full_screen-btn"
                 src="assets/img/icons/fullscreen_icon.svg" alt="">
         </div>
+        <div class="polices">
+                <a href="./impressum.html">Legal Notice</a>
+                <a href="./privat-policy.html">Privacy Police</a>
+            </div> 
         <div onclick="restartGame()" class="restart">RESTART</div>
     `;
 };

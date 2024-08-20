@@ -204,8 +204,6 @@ class Character extends MoveableObject {
         return hasBottles && isLookingForward && canThrowBottles;
     };
 
-    ;
-
     /**
      * Handles the death process for the character.
      * Prepares for death, stops music, plays game over sound, and starts dying animation.
