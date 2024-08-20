@@ -104,16 +104,6 @@ class Character extends MoveableObject {
         this.speed = 5;
     };
 
-    /**
-    * Executes a series of key bindings for the current interval.
-    */
-    processKeyBindings() {
-        this.handleKeyRight();
-        this.handleKeyLeft();
-        this.handleKeyUp();
-        this.handleKeyThrow();
-        this.updateCamera();
-    };
 
     /**
     * Starts the animation sequence by setting up intervals for game functions.
@@ -169,58 +159,40 @@ class Character extends MoveableObject {
         this.isSleeping = true;
     };
 
-    /**
-     * A function to handle the key right event.
+   
+    walkRight() {
+        this.handleKeyRight();
+    };
+
+    walkLeft() {
+        this.handleKeyLeft();
+    };
+
+    jump() {
+        this.handleKeyUp();
+    };
+
+    throwBottle() {
+        this.handleKeyThrow();
+    };
+
+     /**
+     * Throws an object and updates the character bars.
      */
-    handleKeyRight() {
-        if (this.world.keyboard.KEY_RIGHT && this.x + this.width / 2 < this.world.level.level_limit) {
-            this.walkingRight();
-            if (this.y == this.default_positionY) {
-                if (sound == true) this.walking_sound.play();
-                this.walking_sound.volume = 0.2;
-            }
-        }
+     throw() {
+        this.world.throwableObjects[0].throwBottle(this.x + 30, this.y + 100)
+        this.world.characterBars[1].percentage += 20
+        this.world.characterBars[1].setPercentage(this.world.characterBars[1].percentage)
+        this.isTrowing = true;
+        setTimeout(() => {
+            this.world.throwableObjects.pop();
+            this.isTrowing = false;
+        }, 1000);
     };
 
     /**
-     * Checks if the left arrow key is pressed and the object's x position is within bounds,
-     * then triggers the walking left animation and plays a walking sound if the object is on the default Y position.
-     */
-    handleKeyLeft() {
-        if (this.world.keyboard.KEY_LEFT && this.x > 0 + this.width / 2) {
-            this.walkingLeft();
-            if (this.y == this.default_positionY) {
-                if (sound == true) this.walking_sound.play();
-                    this.walking_sound.volume = 0.2;
-            };
-        }
-    };
-
-    /**
-     * Triggered when the up arrow key is pressed.
-     */
-    handleKeyUp() {
-        if (this.world.keyboard.KEY_UP && this.y == this.default_positionY) {
-            this.performJump();
-            this.refreshIdleTimer();
-        }
-    };
-
-    /**
-     * Throws a key if the throw key is pressed and the player has bottles and is looking forward.
-     */
-    handleKeyThrow() {
-        if (this.world.keyboard.KEY_THROW) {
-            this.refreshIdleTimer();
-            if (this.throwBottlesWhileLookingForward()) {
-                this.throw();
-                if (sound == true) this.throwing_sound.play()
-            }
-        }
-    };
-
-    /**
-    * Check if the entity can throw bottles and is looking forward.
+    * Check if the 
+    *  can throw bottles and is looking forward.
     *
     * @return {boolean} True if the entity can throw bottles and is looking forward, false otherwise.
     */
@@ -232,48 +204,7 @@ class Character extends MoveableObject {
         return hasBottles && isLookingForward && canThrowBottles;
     };
 
-    /**
-    * Checks if the character is walking to the left.
-    *
-    * @return {boolean} - Returns true if the character is walking to the left.
-    */
-    walkingLeft() {
-        this.refreshIdleTimer();
-        this.moveLeft();
-        this.takeStatuscharacterBars(-40);
-        this.otherDirection = true;
-        return true; // Assuming the function should return true
-    };
-
-    /**
-     * Checks if the character is walking to the right.
-     *
-     * @return {boolean} - Returns true if the character is walking to the right.
-     */
-    walkingRight() {
-        this.refreshIdleTimer();
-        this.moveRight();
-        this.takeStatuscharacterBars(-40);
-        this.isSleeping = false;
-        return true; // Assuming the function should return true
-    };
-
-    /**
-     * Sets the camera position and offset based on the current object position.
-     *
-     * @return {Object} An object containing the camera position and offset.
-     */
-    updateCamera() {
-        return (
-            this.world.camera_x = -this.x + this.width / 2,
-            this.offset = {
-                width: 40,
-                height: 130,
-                x: this.x + 30,
-                y: this.y + 100
-            }
-        );
-    };
+    ;
 
     /**
      * Handles the death process for the character.
@@ -442,20 +373,6 @@ class Character extends MoveableObject {
         this.world.characterBars.forEach(element => {
             element.x = this.x + x
         });
-    };
-
-    /**
-     * Throws an object and updates the character bars.
-     */
-    throw() {
-        this.world.throwableObjects[0].throwBottle(this.x + 30, this.y + 100)
-        this.world.characterBars[1].percentage += 20
-        this.world.characterBars[1].setPercentage(this.world.characterBars[1].percentage)
-        this.isTrowing = true;
-        setTimeout(() => {
-            this.world.throwableObjects.pop();
-            this.isTrowing = false;
-        }, 1000);
     };
 
     /**

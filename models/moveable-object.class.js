@@ -87,6 +87,112 @@ class MoveableObject extends DrawableObject {
         }
     };
 
+     /**
+    * Executes a series of key bindings for the current interval.
+    */
+     processKeyBindings() {
+        this.handleKeyRight();
+        this.handleKeyLeft();
+        this.handleKeyUp();
+        this.handleKeyThrow();
+        this.updateCamera();
+    };
+
+     /**
+     * A function to handle the key right event.
+     */
+  
+      handleKeyRight() {
+        if (this.world.keyboard.KEY_RIGHT && this.x + this.width / 2 < this.world.level.level_limit) {
+            this.walkingRight();
+            if (this.y == this.default_positionY) {
+                if (sound == true) this.walking_sound.play();
+                this.walking_sound.volume = 0.2;
+            }
+        }
+    };
+
+    /**
+     * Checks if the left arrow key is pressed and the object's x position is within bounds,
+     * then triggers the walking left animation and plays a walking sound if the object is on the default Y position.
+     */
+    handleKeyLeft() {
+        if (this.world.keyboard.KEY_LEFT && this.x > 0 + this.width / 2) {
+            this.walkingLeft();
+            if (this.y == this.default_positionY) {
+                if (sound == true) this.walking_sound.play();
+                    this.walking_sound.volume = 0.2;
+
+            };
+        }
+    };
+
+    /**
+     * Triggered when the up arrow key is pressed.
+     */
+    handleKeyUp() {
+        if (this.world.keyboard.KEY_UP && this.y == this.default_positionY) {
+            this.performJump();
+            this.refreshIdleTimer();
+        }
+    };
+
+    /**
+     * Throws a key if the throw key is pressed and the player has bottles and is looking forward.
+     */
+    handleKeyThrow() {
+        if (this.world.keyboard.KEY_THROW) {
+            this.refreshIdleTimer();
+            if (this.throwBottlesWhileLookingForward()) {
+                this.throw();
+                if (sound == true) this.throwing_sound.play()
+            }
+        }
+    };
+
+     /**
+    * Checks if the character is walking to the left.
+    *
+    * @return {boolean} - Returns true if the character is walking to the left.
+    */
+     walkingLeft() {
+        this.refreshIdleTimer();
+        this.moveLeft();
+        this.takeStatuscharacterBars(-40);
+        this.otherDirection = true;
+        return true; // Assuming the function should return true
+    };
+
+    /**
+     * Checks if the character is walking to the right.
+     *
+     * @return {boolean} - Returns true if the character is walking to the right.
+     */
+    walkingRight() {
+        this.refreshIdleTimer();
+        this.moveRight();
+        this.takeStatuscharacterBars(-40);
+        this.isSleeping = false;
+        return true; // Assuming the function should return true
+    };
+
+    /**
+     * Sets the camera position and offset based on the current object position.
+     *
+     * @return {Object} An object containing the camera position and offset.
+     */
+    updateCamera() {
+        return (
+            this.world.camera_x = -this.x + this.width / 2,
+            this.offset = {
+                width: 40,
+                height: 130,
+                x: this.x + 30,
+                y: this.y + 100
+            }
+        );
+    }
+
     /**
      * Decreases the y-coordinate of the object based on its speed and acceleration.
      */
