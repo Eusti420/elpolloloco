@@ -525,6 +525,18 @@ li {
     display: flex;
 }
 
+@media (max-height: 800px) {
+    h1 {
+        top: 10px;
+    }
+}
+
+@media (max-height: 666px) {
+    h1 {
+        display: none;
+    }
+}
+
 @media only screen and (max-width: 720px) {
 
     #canvas,
@@ -594,6 +606,11 @@ li {
     .keys {
         display: none;
     }
+
+
+    .backtoindex {
+        top: 0px;
+    }
 }
 
 @media only screen and (min-width: 450px) and (max-width: 600px) {
@@ -631,6 +648,18 @@ li {
         bottom: 180px;
         left: 90px;
         right: 0;
+    }
+
+    .policy {
+        padding-top: 0px;
+    }
+
+    .impressum {
+        padding-top: 0px;
+    }
+
+    .backtoindex {
+        top: 0px;
     }
 
     #start_screen-background {
