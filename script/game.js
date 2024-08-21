@@ -5,6 +5,7 @@ let characterAlive = true;
 let bossAlive = true;
 let keyboard = new Keyboard();
 let intervalIds = [];
+let intervals = [];
 let backgroundMusic = new Audio("assets/audio/game_sound.mp3");
 let chicken_walk = new Audio("assets/audio/chicken.mp3");
 let intro_music = new Audio("assets/audio/boss_intro.mp3");
@@ -42,6 +43,69 @@ function interval(func, time) {
     let boundFunc = func.bind(this);
     let intervalId = setInterval(boundFunc, time);
     intervalIds.push(intervalId);
+    intervals.push({ id: intervalId, func: boundFunc, time: time });
+
+};
+
+
+function pauseGame() {
+    intervals.forEach(intervalObj => clearInterval(intervalObj.id));
+    cancelAnimationFrame(world.drawId);
+    characterAlive = true;
+    bossAlive = true;
+    gameStopped = true;
+};
+
+function resumeGame() {
+    if (gameStopped) {
+        // Starte alle Intervalle neu mit ihren ursprünglichen Funktionen und Zeiten
+        intervals.forEach(intervalObj => {
+            let newIntervalId = setInterval(intervalObj.func, intervalObj.time);
+            intervalObj.id = newIntervalId;
+        });
+
+        // Setze die Animation fort
+        world.drawId = requestAnimationFrame(world.draw.bind(world));
+        gameStopped = false;
+    }
+}
+
+/**
+ * Stops the game, initializes the level, and resets it.
+ */
+function stopGame() {
+    for (let i = 0; i < 99999; i++) {
+        clearInterval(i);
+    }
+    intervalIds = [];
+    intervals = [];
+    cancelAnimationFrame(world.drawId);
+    levelInitializer.initializeLevel();
+    resetLevel(enemies, background, cloud, coins, bottles);
+    characterAlive = true;
+    bossAlive = true;
+    gameStopped = true;
+    restartGame();
+};
+
+function restartGame() {
+    if (!gameStopped) stopGame();
+    canvas = document.getElementById('canvas');
+    closeGameMenu();
+    init();
+    gameStopped = false;
+};
+
+/**
+ * Clears the world by setting the level1 and world variables to null.
+ * Removes the 'mousemove' event listener for the canvas, which triggers the showMousePosition function.
+ * Removes the 'keydown' and 'keyup' event listeners for the window.
+ */
+function clearWorld() {
+    level1 = null;
+    world = null;
+    window.removeEventListener("keydown", function () { });
+    window.removeEventListener("keyup", function () { });
 };
 
 /**
@@ -163,39 +227,4 @@ function releaseMobileControl(id) {
             event.preventDefault();
         });
     });
-};
-
-/**
- * Stops the game, initializes the level, and resets it.
- */
-function stopGame() {
-    for (let i = 0; i < 99999; i++) {
-        clearInterval(i);
-    }
-    cancelAnimationFrame(world.drawId);
-    levelInitializer.initializeLevel();
-    resetLevel(enemies, background, cloud, coins, bottles);
-    characterAlive = true;
-    bossAlive = true;
-    gameStopped = true;
-};
-
-function restartGame() {
-    if (!gameStopped) stopGame();
-    canvas = document.getElementById('canvas');
-    closeGameMenu();
-    init();
-    gameStopped = false;
-};
-
-/**
- * Clears the world by setting the level1 and world variables to null.
- * Removes the 'mousemove' event listener for the canvas, which triggers the showMousePosition function.
- * Removes the 'keydown' and 'keyup' event listeners for the window.
- */
-function clearWorld() {
-    level1 = null;
-    world = null;
-    window.removeEventListener("keydown", function () { });
-    window.removeEventListener("keyup", function () { });
 };

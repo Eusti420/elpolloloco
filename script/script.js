@@ -27,6 +27,10 @@ function openMenu() {
     document.getElementById('overlay').classList.remove('d-none');
 };
 
+function closeMenu() {
+    document.getElementById('overlay').classList.add('d-none');
+}
+
 /**
  * Opens the game menu by removing the 'd-none' class from the 'game-overlay' element.
  * Calls the 'gameOverlay', 'checkButtons', and 'stopGame' functions.
@@ -35,7 +39,7 @@ function openGameMenu() {
     document.getElementById('game-overlay').classList.remove('d-none');
     gameOverlay();
     checkButtons();
-    stopGame();
+    pauseGame();
 };
 
 /**

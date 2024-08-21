@@ -7,7 +7,7 @@ function showGameOverScreen() {
         <div id="game-over">
             <img id="lost" src="assets/img/9_intro_outro_screens/game_over/game over.png" alt="Game Over">
         </div>
-        <div id="restart" onclick="restartGame()">
+        <div id="restart" onclick="stopGame()">
             TRY AGAIN
         </div>
     `;
@@ -23,7 +23,7 @@ function showWinningScreen() {
         <div id="winning-screen">
             <img id="win" src="assets/img/9_intro_outro_screens/win/win_2.png" alt="You win">
         </div>
-        <div id="restart" onclick="restartGame()">
+        <div id="restart" onclick="stopGame()">
             PLAY AGAIN
         </div>
     `;
@@ -43,12 +43,14 @@ function showGameMenu() {
                 src="assets/img/icons/no_sound.svg" alt="mute game sound">
             <img class="menu-btn" onclick="fullScreen(),restartGame()" id="full_screen-btn"
                 src="assets/img/icons/fullscreen_icon.svg" alt="">
+            <img class="menu-btn" onclick="closeGameMenu(), resumeGame()"
+            src="assets/img/icons/close_icon.svg" alt="">    
         </div>
         <div class="polices">
                 <a href="./impressum.html">Legal Notice</a>
                 <a href="./privat-policy.html">Privacy Police</a>
             </div> 
-        <div onclick="restartGame()" class="restart">RESTART</div>
+        <div onclick="stopGame()" class="restart">RESTART</div>
     `;
 };
 
@@ -60,10 +62,10 @@ function gameOverlay() {
     gameOver.innerHTML = "";
     
     if (!characterAlive) {
-        stopGame();
+        pauseGame();
         showGameOverScreen();
     } else if (characterAlive && !bossAlive) {
-        stopGame();
+        pauseGame();
         showWinningScreen();
     } else {
         showGameMenu();
