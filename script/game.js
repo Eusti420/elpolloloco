@@ -84,7 +84,7 @@ function stopGame() {
     bossAlive = true;
     gameStopped = true;
     if (sound == true) {
-        changeSound();
+        sound = false;
     }
     restartGame();
 };

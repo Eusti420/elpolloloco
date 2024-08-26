@@ -15,6 +15,7 @@ function hideStartScreen() {
         backgroundMusic.loop = true;
         chicken_walk.play();
         chicken_walk.loop = true;
+        chicken_walk.volume = 0.2;
     }
 };
 
