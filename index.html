@@ -44,9 +44,11 @@
         </div>
         <div id="overlay" class="overlay d-none">
             <div class="menu">
-                <img class="menu-btn" onclick="changeMusic('music-btn')" id="music-btn" src="assets/img/icons/no_music.svg" alt="change game music">
-                <img class="menu-btn" onclick="changeSound('sound-btn')" id="sound-btn"src="assets/img/icons/no_sound.svg" alt="change game sound">
-                <img class="menu-btn" onclick="closeMenu()" src="assets/img/icons/close_icon.svg" alt="close">
+                <div class="dp-flex">
+                    <div class="fd-col"><img class="menu-btn" onclick="changeSound('sound-btn')" id="sound-btn"src="assets/img/icons/no_sound.svg" alt="change game sound">sound off/on</div>
+                </div>
+                <div class="fd-col"><img class="menu-btn-fullscreen" onclick="fullScreen(), resumeGame()" id="full_screen-btn" src="assets/img/icons/fullscreen_icon.svg" alt="">fullscreen</div>
+                <div class="fd-col"><img class="menu-btn" onclick="closeMenu(), resumeGame()" src="assets/img/icons/close_icon.svg" alt="close">close</div>
             </div>
             <div class="polices">
                 <a href="./impressum.html">Legal Notice</a>
@@ -131,6 +133,8 @@
                 <div class="mobile-btn" id="throw">
                     <img src="assets/img/6_salsa_bottle/bottle_rotation/4_bottle_rotation.png" alt="">
                 </div>
+                <div class="fd-col"><img class="menu-btn" onclick="changeSound('sound-btn')" id="sound-btn"src="assets/img/icons/no_sound.svg" alt="change game sound"></div>
+
             </div>
         </div>
         <div class="keys">
@@ -150,6 +154,9 @@
                         d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5" />
                 </svg> :JUMP</div>
             <div>D:THROW</div>
+            <div><img class="menu-btn" onclick="changeSound('sound-btn')" id="sound-btn"src="assets/img/icons/no_sound.svg" alt="change game sound"></div>
+            <div><img class="menu-btn-fullscreen" onclick="fullScreen(), resumeGame()" id="full_screen-btn" src="assets/img/icons/fullscreen_icon.svg" alt="">fullscreen</div>
+
         </div>
     </div>
 

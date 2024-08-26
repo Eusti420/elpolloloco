@@ -17,7 +17,7 @@ class Character extends MoveableObject {
     walking_sound = new Audio("assets/audio/walking.mp3");
     jumping_sound = new Audio("assets/audio/jump_sound.mp3");
     throwing_sound = new Audio("assets/audio/throwing_sound.mp3");
-    sleeping_sound = new Audio("assets/audio/snoring_pepe_sound.mp3");
+    sleeping_sound = new Audio("assets/audio/snorring_sound.mp3");
     game_over = new Audio("assets/audio/game_over_sound.mp3");
 
     IMAGES_WALKING = [
@@ -146,6 +146,7 @@ class Character extends MoveableObject {
             if (!this.gotHurt) {
                 this.playAnimation(this.IMAGES_SLEEPING);
                 if (sound == true) this.sleeping_sound.play();
+                    this.sleeping_sound.volume = 0.2;
             }
         } else {
             this.playAnimation(this.IMAGES_IDLE);
@@ -212,13 +213,10 @@ class Character extends MoveableObject {
         this.prepareForDeath();
         clearInterval(scanDeath);
 
-        if (music) {
-            this.stopMusic(backgroundMusic);
-            this.stopMusic(intro_music);
-        }
 
         if (sound) {
             this.game_over.play();
+            this.stopMusic(backgroundMusic);
         }
 
         this.startDyingAnimation();

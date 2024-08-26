@@ -113,7 +113,6 @@ class Endboss extends MoveableObject {
      * Starts the introduction sequence.
      */
     startIntro() {
-        this.changeMusic();
         this.active = true;
         this.bossHealthBarAppears();
         this.intro();
@@ -376,25 +375,13 @@ class Endboss extends MoveableObject {
         this.dead_interval = null;
     };
     
-    /**
-    * Stops the current background and chicken walk music, then plays intro music if music is enabled.
-    */
-    changeMusic() {
-        this.stopMusic(backgroundMusic)
-        this.stopMusic(chicken_walk);
-        if (music == true) {
-            intro_music.play()
-            intro_music.volume = 0.1;
-        }
-    };
+   
 
     /**
      * Perform necessary actions when the success condition is met.
      */
     success() {
         bossAlive = false;
-        this.stopMusic(intro_music);
-        this.stopMusic(chicken_walk);
         if (sound == true) winning_sound.play();
         winning_sound.loop = false;
         gameOverlay();

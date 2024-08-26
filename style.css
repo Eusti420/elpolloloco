@@ -241,7 +241,6 @@ span {
 
 .keys>div>img,
 .keys-controls_screen>img {
-    width: 24px;
     height: 24px;
 }
 
@@ -304,12 +303,25 @@ span {
     background-color: rgba(0, 0, 0, 0.9);
 }
 
+.fd-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
+
+.dp-flex {
+    display: flex;
+    gap: 24px;
+}
+
 .menu {
     display: flex;
     padding: 2rem;
     height: 100%;
-    justify-content: center;
-    gap: 12rem;
+    justify-content: space-between;
+    gap: 24px;
+    color: #eedd44;
 }
 
 .menu-ingame {
@@ -320,7 +332,25 @@ span {
 
 .menu-btn {
     border-radius: 8px;
-    height: 64px;
+    height: 36px !important;
+    background-color: #4ACBC0;
+}
+
+.menu-btn-fullscreen {
+    border-radius: 8px;
+    height: 36px !important;
+    background-color: #4ACBC0;
+    margin-right: 8px;
+}
+
+.menu-btn-fullscreen:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.menu-btn:hover {
+    cursor: pointer;
+    transform: scale(1.2);
 }
 
 .menu>#full_screen-btn {

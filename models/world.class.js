@@ -135,7 +135,6 @@ class World {
 
     /**
      * Checks if the global alpha value is nearly gone.
-     * @return {boolean} True if the global alpha value is less than or equal to 0.02, false otherwise.
      */
     splashesNearlyGone() {
         return (this.ctx.globalAlpha <= 0.02)
@@ -151,8 +150,7 @@ class World {
     };
 
     /**
-     * Updates the fading alpha value and adds the specified element to the map.
-     * @param {Element} element - The element to be added to the map.
+     * Updates the fading alpha value and adds the specified element to the map..
      */
     keepFading(element) {
         this.fadingAlpha -= this.alphaDecrease;
@@ -175,7 +173,6 @@ class World {
 
     /**
      * Add multiple objects to the map array.
-     * @param {Array} objs - An array of objects to be added to the map array.
      */
     addToMapArray(objs) {
         objs.forEach((obj) => {
@@ -185,7 +182,6 @@ class World {
 
     /**
      * A function that adds a MovableObject to the map.
-     * @param {MovableObject} MovableObject - The MovableObject to be added to the map.
      */
     addToMap(MovableObject) {
         try {
@@ -200,7 +196,6 @@ class World {
 
     /**
      * Flips the image horizontally.
-     * @param {MovableObject} MovableObject - The object to be flipped.
      */
     flipImage(MovableObject) {
         this.ctx.save();
@@ -210,33 +205,21 @@ class World {
         MovableObject.offset.x = 60 + MovableObject.offset.x * -1;
     };
 
-    /**
-     * Flips the image back to its original position.
-     * @param {MovableObject} MovableObject - The movable object to be flipped.
-     */
     flipImageBack(MovableObject) {
         MovableObject.x = MovableObject.x * -1;
         MovableObject.offset.x = 60 + MovableObject.offset.x * -1;
         this.ctx.restore();
     };
 
-    /**
-     * Rotates an image around a movable object.
-     * @param {MovableObject} movableObject - The movable object around which the image will be rotated.
-     */
     rotateImage(movableObject) {
         const { ctx } = this;
         const { x, y, width, height, rotation } = movableObject;
-
         ctx.save();
         ctx.translate(x + width / 2, y + height / 2);
         ctx.rotate(rotation);
         ctx.translate(-(x + width / 2), -(y + height / 2));
     };
 
-    /**
-    * Checks for various collisions: coin, bottle, bottle-enemy, enemy, and end boss collisions.
-    */
     checkCollisions() {
         this.coinCollision();
         this.bottleCollection();
@@ -245,20 +228,13 @@ class World {
         this.endBossCollision();
     };
 
-    /**
-     * Handles the collision between the player and coins.
-     * Calls the 'takeCoins' function every 10 milliseconds.
-     */
+
     coinCollision() {
         setInterval(() => {
             this.takeCoins();
         }, 10);
     };
 
-    /**
-     * Takes the coins collected by the character.
-     * If the character collides with a coin, it plays a coin sound,
-     */
     takeCoins() {
         this.level.coins.forEach((coin) => {
             if (this.character.isColliding(coin)) {
@@ -268,39 +244,24 @@ class World {
         })
     };
 
-    /**
-     * Handles the collection of a coin element
-     * @param {Object} element - The coin element to be handled.
-     */
+   
     handleCoinCollection(element) {
         this.ctx.clearRect(element.x, element.y, element.width, element.height);
         this.level.coins = this.level.coins.filter(coin => coin !== element);
         this.updateCharacterCoinBar(-10);
     };
 
-    /**
-     * Updates the character's coin bar percentage.
-     * @param {number} amount - The amount to adjust the coin bar percentage.
-     */
     updateCharacterCoinBar(amount) {
         this.characterBars[2].percentage += amount;
         this.characterBars[2].setPercentage(this.characterBars[2].percentage);
     };
 
-    /**
-     * Checks bottle-collection at regular intervals.
-     * @param {type} paramName - description of parameter
-     */
     bottleCollection() {
         setInterval(() => {
             this.collectBottles();
         }, 10);
     };
 
-    /**
-    * Collects bottles if the character collides with them and there is space for more throwable objects.
-    * Clears the bottle from the canvas, plays a sound, adds a new throwable object, and updates the character's health bar.
-    */
     collectBottles() {
         this.level.bottles.forEach((bottle, index) => {
             if (this.character.isColliding(bottle) && this.throwableObjects.length < 5) {
@@ -314,20 +275,12 @@ class World {
         });
     };
 
-    /**
-     * Sets the interval for bottle-enemy collision.
-     * @param {type} paramName - description of parameter
-     */
     bottleEnemyCollision() {
         setInterval(() => {
             this.bottleCollides();
         }, 10);
     };
 
-    /**
-     * Checks if the bottle collides with specific objects in the level.
-     * If a collision occurs, it performs specific actions based on the collided object.
-     */
     bottleCollides() {
         if (this.throwableObjects.length > 0) {
             let bottle = this.throwableObjects[0];
@@ -338,32 +291,17 @@ class World {
         }
     };
 
-    /**
-    * Handles a chicken hit by breaking the bottle and causing the chicken to die.
-    * 
-    * @param {ThrowableObject} bottle - The bottle that hits the chicken.
-    * @param {Enemy} enemy - The chicken (enemy) being hit.
-    */
     handleChickenHit(bottle, enemy) {
         this.bottleBreak(bottle);
         this.chickenDies(enemy);
     };
 
-    /**
-    * Handles a boss hit by breaking the bottle, making the boss register the hit, 
-    * and playing the boss hit sound.
-    * 
-    * @param {ThrowableObject} bottle - The bottle that hits the boss.
-    */
     handleBossHit(bottle) {
         this.bottleBreak(bottle);
         this.endBoss.isHit();
         if (sound == true) this.bossHit_sound.play();
     };
 
-    /**
-     * The inteval for checking the collision between the character and the boss.
-     */
     endBossCollision() {
         setInterval(() => {
             this.characterBossInteraction();
@@ -386,7 +324,6 @@ class World {
 
     /**
      * Checks if the boss went past the character.
-     * @return {boolean} Whether there is a boss behind the character or not.
      */
     bossBehindCharacter() {
         return (this.endBoss.offset.x + this.endBoss.offset.width < this.character.x);
@@ -403,9 +340,6 @@ class World {
 
     /**
      * Handles interactions between the character and enemies.
-     * Checks if the character is jumping on an enemy or colliding with an enemy.
-     * If the character is jumping on a chicken, it handles the chicken's response.
-     * If the character is colliding with an enemy, it calls the 'isHit' function.
      */
     handleCharacterEnemyInteractions() {
         this.level.enemies.forEach((enemy) => {
@@ -431,23 +365,9 @@ class World {
 
     /**
     * Handles the death of a chicken enemy by invoking its death method and removing it from the enemies list after a delay.
-    * 
-    * @param {Enemy} enemy - The chicken enemy that dies.
     */
     chickenDies(enemy) {
         return (enemy.chickenDead(this.level.enemies.indexOf(enemy)),
-            setTimeout(() => {
-                enemies.splice(this.level.enemies.indexOf(enemy), 1);
-            }, 1000));
-    };
-
-    /**
-    * Handles the death of a chick enemy by invoking its death method and removing it from the enemies list after a delay.
-    * 
-    * @param {Enemy} enemy - The chick enemy that dies.
-    */
-    chickDies(enemy) {
-        return (enemy.chickDead(this.level.enemies.indexOf(enemy)),
             setTimeout(() => {
                 enemies.splice(this.level.enemies.indexOf(enemy), 1);
             }, 1000));
@@ -467,10 +387,7 @@ class World {
     };
 
     /**
-    * Handles the breaking of a bottle by creating a splash effect, breaking the bottle, 
-    * removing it from the throwable objects list, and adding a new throwable object.
-    * 
-    * @param {ThrowableObject} bottle - The bottle that is being broken.
+    * Handles the breaking of a bottle by creating a splash effect, breaking the bottle, removing it from the throwable objects list, and adding a new throwable object 
     */
     bottleBreak(bottle) {
         const { x, y } = bottle;

@@ -9,7 +9,7 @@ canvas = document.getElementById('canvas');
 function hideStartScreen() {
     document.getElementById('startScreen').style.display = 'none';
     document.getElementsByClassName('canvas')[0].classList.remove('d-none');
-    if (music == true) {
+    if (sound == true) {
         backgroundMusic.play();
         backgroundMusic.volume = 0.05;
         backgroundMusic.loop = true;
@@ -38,23 +38,7 @@ function closeMenu() {
 function openGameMenu() {
     document.getElementById('game-overlay').classList.remove('d-none');
     gameOverlay();
-    checkButtons();
     pauseGame();
-};
-
-/**
- * Checks the state of the sound and music buttons and updates their images accordingly.
- *
- * @param {type} sound - the state of the sound button
- * @param {type} music - the state of the music button
- */
-function checkButtons() {
-    let soundBtn = document.getElementById('game-sound-btn');
-    let musicBtn = document.getElementById('game-music-btn');
-    if (sound == true) { sound.src = "assets/img/icons/no_sound.svg"; }
-    else { soundBtn.src = "assets/img/icons/sound_on.svg"; }
-    if (music == true) { music.src = "assets/img/icons/no_music.svg"; }
-    else { musicBtn.src = "assets/img/icons/music_on.svg"; };
 };
 
 /**
@@ -77,9 +61,21 @@ function changeSound(id) {
     let btn = document.getElementById(id);
     if (btn.src.slice(-12) == "no_sound.svg") {
         sound = false;
+        backgroundMusic.pause();
+        backgroundMusic.currentTime = 0;
+        backgroundMusic.loop = false;
+        chicken_walk.pause();
+        chicken_walk.currentTime = 0;
+        chicken_walk.loop = false;
         btn.src = "assets/img/icons/sound_on.svg";
     } else {
         sound = true;
+        backgroundMusic.play();
+        backgroundMusic.currentTime = 0;
+        backgroundMusic.loop = true;
+        chicken_walk.play();
+        chicken_walk.currentTime = 0;
+        chicken_walk.loop = true;
         btn.src = "assets/img/icons/no_sound.svg";
     }
 };
@@ -92,7 +88,7 @@ function changeSound(id) {
  * @param {string} id - The ID of the button clicked.
  * @return {undefined} This function does not return a value.
  */
-function changeMusic(id) {
+/* function changeMusic(id) {
     let btn = document.getElementById(id);
     if (btn.src.slice(-12) == "no_music.svg") {
         backgroundMusic.pause();
@@ -107,7 +103,7 @@ function changeMusic(id) {
         music = true;
         btn.src = "assets/img/icons/no_music.svg";
     }
-};
+}; */
 
 
 

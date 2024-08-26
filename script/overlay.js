@@ -28,6 +28,9 @@ function showWinningScreen() {
         </div>
     `;
     gameOver.classList.remove("d-none");
+    if (sound == true) {
+        sound = false;
+    }
 };
 
 /**
@@ -37,14 +40,10 @@ function showGameMenu() {
     let gameOver = document.getElementById("game-overlay");
     gameOver.innerHTML = /*html*/`
         <div class="menu">
-            <img class="menu-btn" onclick="changeMusic('game-music-btn')" id="game-music-btn"
-                src="assets/img/icons/no_music.svg" alt="mute game music">
-            <img class="menu-btn" onclick="changeSound('game-sound-btn')" id="game-sound-btn"
-                src="assets/img/icons/no_sound.svg" alt="mute game sound">
-            <img class="menu-btn" onclick="fullScreen(),restartGame()" id="full_screen-btn"
-                src="assets/img/icons/fullscreen_icon.svg" alt="">
-            <img class="menu-btn" onclick="closeGameMenu(), resumeGame()"
-            src="assets/img/icons/close_icon.svg" alt="">    
+            <div class="dp-flex">
+            </div>
+                <div class="fd-col"><img class="menu-btn" onclick="closeGameMenu(), resumeGame()" src="assets/img/icons/close_icon.svg" alt="close">close</div>
+            </div>   
         </div>
         <div class="polices">
                 <a href="./impressum.html">Legal Notice</a>

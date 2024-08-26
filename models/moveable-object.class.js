@@ -266,10 +266,10 @@ class MoveableObject extends DrawableObject {
     * 
     * @param {HTMLAudioElement} music - The music to be stopped.
     */
-    stopMusic(music) {
-        music.pause();
-        music.currentTime = 0;
-        music.loop = false;
+    stopMusic(sound) {
+        sound.pause();
+        sound.currentTime = 0;
+        sound.loop = false;
     };
 
     /**

@@ -8,10 +8,8 @@ let intervalIds = [];
 let intervals = [];
 let backgroundMusic = new Audio("assets/audio/game_sound.mp3");
 let chicken_walk = new Audio("assets/audio/chicken.mp3");
-let intro_music = new Audio("assets/audio/boss_intro.mp3");
 let winning_sound = new Audio("assets/audio/game_win_sound.mp3");
 let sound = true;
-let music = true;
 let fullscreen = false;
 let mobileControlIds = ["left", "right", "jump", "throw"];
 
@@ -85,6 +83,9 @@ function stopGame() {
     characterAlive = true;
     bossAlive = true;
     gameStopped = true;
+    if (sound == true) {
+        changeSound();
+    }
     restartGame();
 };
 
